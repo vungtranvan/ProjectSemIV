@@ -29,7 +29,7 @@
                     android:textSize="22sp"
                     android:textColor="#ff0011"
                     android:textStyle="bold"
-                    android:text="Câu 1" />
+                    android:text="@string/question_no_default" />
 
                 <TextView
                     android:id="@+id/tvQuestion"
@@ -38,7 +38,7 @@
                     android:textSize="20sp"
                     android:textColor="#000000"
                     android:textStyle="italic"
-                    android:text="Câu hỏi thứ nhất " />
+                    android:text="@string/question_content_default" />
             </LinearLayout>
 
             <ImageView
@@ -64,7 +64,7 @@
                     android:textSize="16sp"
                     android:textColor="#1502c7"
                     android:textStyle="bold"
-                    android:text="Trả lời 1" />
+                    android:text="@string/question_ansA_default" />
 
                 <RadioButton
                     android:id="@+id/radB"
@@ -74,7 +74,7 @@
                     android:textSize="16sp"
                     android:textColor="#1502c7"
                     android:textStyle="bold"
-                    android:text="Trả lời 2" />
+                    android:text="@string/question_ansB_default" />
 
                 <RadioButton
                     android:id="@+id/radC"
@@ -84,7 +84,7 @@
                     android:textSize="16sp"
                     android:textColor="#1502c7"
                     android:textStyle="bold"
-                    android:text="Trả lời 3" />
+                    android:text="@string/question_ansC_default" />
 
                 <RadioButton
                     android:id="@+id/radD"
@@ -94,7 +94,7 @@
                     android:textSize="16sp"
                     android:textColor="#1502c7"
                     android:textStyle="bold"
-                    android:text="Trả lời 4" />
+                    android:text="@string/question_ansD_default" />
             </RadioGroup>
         </LinearLayout>
     </ScrollView>

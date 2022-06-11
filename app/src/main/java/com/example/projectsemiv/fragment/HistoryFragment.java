@@ -9,12 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
 
 public class HistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.historyfragment, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.history_nav);
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 }

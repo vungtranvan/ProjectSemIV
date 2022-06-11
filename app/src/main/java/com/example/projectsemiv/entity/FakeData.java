@@ -7,9 +7,9 @@ public class FakeData {
 
     public List<Question01> getQuestionFake() {
         List<Question01> lstData = new ArrayList<Question01>();
-        lstData.add(new Question01(1, "1 + 1 = ?", "1", "2", "3", "4", "B", 1, "Toan", "", ""));
+        lstData.add(new Question01(1, "1 + 1 = ?", "1", "2", "3", "4", "B", 1, "Toan", "img_1", ""));
         lstData.add(new Question01(2, "1 + 2 = ?", "1", "2", "3", "4", "C", 1, "Toan", "", ""));
-        lstData.add(new Question01(3, "2 + 2 = ?", "1", "2", "3", "4", "D", 1, "Toan", "", ""));
+        lstData.add(new Question01(3, "2 + 2 = ?", "1", "2", "3", "4", "D", 1, "Toan", "img_2", ""));
         lstData.add(new Question01(4, "1 x 1 = ?", "1", "2", "3", "4", "A", 1, "Toan", "", ""));
         lstData.add(new Question01(5, "1 + 3 = ?", "1", "2", "3", "4", "D", 1, "Toan", "", ""));
         lstData.add(new Question01(6, "5 + 1 = ?", "4", "6", "7", "8", "B", 1, "Toan", "", ""));

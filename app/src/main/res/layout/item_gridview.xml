@@ -11,7 +11,6 @@
         android:id="@+id/imgIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:contentDescription=""
         app:srcCompat="@drawable/subject" />
 
     <TextView
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="10dp"
-        android:text="Đề số 1"
+        android:text="@string/exam_no"
         android:textColor="#435cec"
         android:textSize="18sp"
         android:textStyle="bold" />

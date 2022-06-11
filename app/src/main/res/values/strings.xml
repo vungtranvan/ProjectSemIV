@@ -1,13 +1,39 @@
 <resources>
-    <string name="app_name">ProjectSemIV</string>
+    <string name="app_name">Ứng Dụng Thi Trắc Nghiệm</string>
+    <string name="info_user_default">Trần Văn Vững</string>
     <string name="home_nav">Trang Chủ</string>
     <string name="math_nav">Toán Học</string>
     <string name="history_nav">Lịch Sử</string>
     <string name="account_nav">Tài Khoản</string>
     <string name="change_pass_nav">Đổi mật khẩu</string>
     <string name="my_profile_nav">Thông tin tài khoản</string>
+    <string name="test">Kiểm tra</string>
+    <string name="view_mark">Xem điểm</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="end">Kết thúc</string>
+    <string name="correct_question">Câu đúng</string>
+    <string name="wrong_question">Câu sai</string>
+    <string name="unanswered_question">Câu chưa trả lời</string>
+    <string name="total_mark">Tổng điểm</string>
+    <string name="comeback">Quay lại</string>
+    <string name="exit">Thoát</string>
+    <string name="cancel">Đóng</string>
+    <string name="exam_no">Đề số</string>
+    <string name="question_no">Câu</string>
+    <string name="list_of_answers">Danh sách câu trả lời</string>
+    <string name="notification">Thông báo</string>
+    <string name="notification_end_test">Bạn có chắc chắn muốn kết thúc bài thi hay không?</string>
+    <string name="notification_exit">Bạn có muốn thoát hay không?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="question_no_default">Câu 1</string>
+    <string name="question_content_default">Câu hỏi thứ nhất</string>
+    <string name="question_ansA_default">Trả lời A</string>
+    <string name="question_ansB_default">Trả lời B</string>
+    <string name="question_ansC_default">Trả lời C</string>
+    <string name="question_ansD_default">Trả lời D</string>
+
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

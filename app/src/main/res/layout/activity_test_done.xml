@@ -12,10 +12,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cc5383f2"
+        android:background="@color/base_color"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Kết thúc"
+        android:text="@string/end"
         android:textColor="#f71c1c"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Câu đúng:" />
+            android:text="@string/correct_question" />
 
         <TextView
             android:id="@+id/tvTrue"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Câu sai:" />
+            android:text="@string/wrong_question" />
 
         <TextView
             android:id="@+id/tvFalse"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.79"
-            android:text="Câu chưa trả lời:" />
+            android:text="@string/unanswered_question" />
 
         <TextView
             android:id="@+id/tvNotAns"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tổng điểm:" />
+            android:text="@string/total_mark" />
 
         <TextView
             android:id="@+id/tvTotalPoint"
@@ -111,14 +111,16 @@
             android:id="@+id/btnAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="Quay lại" />
+            android:text="@string/comeback" />
 
         <Button
             android:id="@+id/btnExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="Thoát" />
+            android:text="@string/exit" />
     </LinearLayout>
 </LinearLayout>

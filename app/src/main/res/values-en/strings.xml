@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Exam Test</string>
+    <string name="info_user_default">Tran Van Vung</string>
+    <string name="home_nav">Home</string>
+    <string name="math_nav">Math</string>
+    <string name="history_nav">History</string>
+    <string name="account_nav">Account</string>
+    <string name="change_pass_nav">Chang password</string>
+    <string name="my_profile_nav">My profile</string>
+    <string name="test">Test</string>
+    <string name="view_mark">View Mark</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="end">End Test</string>
+    <string name="correct_question">Correct Question</string>
+    <string name="wrong_question">Wrong Question</string>
+    <string name="unanswered_question">Unanswered Question</string>
+    <string name="total_mark">Total Mark</string>
+    <string name="comeback">Come back</string>
+    <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="exam_no">Exam No</string>
+    <string name="question_no">No</string>
+    <string name="list_of_answers">List of answers</string>
+    <string name="notification">Notification</string>
+    <string name="notification_end_test">Are you sure you want to end the test?</string>
+    <string name="notification_exit">Do you want to exit or not?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="question_no_default">No 1</string>
+    <string name="question_content_default">Question one</string>
+    <string name="question_ansA_default">Answer A</string>
+    <string name="question_ansB_default">Answer B</string>
+    <string name="question_ansC_default">Answer C</string>
+    <string name="question_ansD_default">Answer D</string>
+
+    <string name="navigation_drawer_open">navigation drawer open</string>
+    <string name="navigation_drawer_close">navigation drawer close</string>
+</resources>

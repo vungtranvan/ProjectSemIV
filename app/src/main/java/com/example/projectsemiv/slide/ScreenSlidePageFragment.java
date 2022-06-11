@@ -25,7 +25,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
     List<Question01> arr_Ques;
     public static final String ARG_PAGE = "page";
-    public static final String ARG_CHECKANSWER = "checkAnswer";
+    public static final String ARG_CHECK_ANSWER = "checkAnswer";
     public int mPageNumber;
     public int checkAns;
 
@@ -60,14 +60,14 @@ public class ScreenSlidePageFragment extends Fragment {
         ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
         arr_Ques = slideActivity.getData();
         mPageNumber = getArguments().getInt(ARG_PAGE);
-        checkAns = getArguments().getInt(ARG_CHECKANSWER);
+        checkAns = getArguments().getInt(ARG_CHECK_ANSWER);
     }
 
     public static ScreenSlidePageFragment create(int pageNumber, int checkAnswer) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNumber);
-        args.putInt(ARG_CHECKANSWER, checkAnswer);
+        args.putInt(ARG_CHECK_ANSWER, checkAnswer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -75,7 +75,7 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        tvNum.setText("Câu " + (mPageNumber + 1));
+        tvNum.setText(getString(R.string.question_no) + " " + (mPageNumber + 1));
 
         Question01 question = this.getItem(mPageNumber);
         tvQuestion.setText(question.getQuestion());
@@ -84,8 +84,12 @@ public class ScreenSlidePageFragment extends Fragment {
         radC.setText(question.getAns_c());
         radD.setText(question.getAns_d());
 
+        if (question.getImage() != null && !question.getImage().equals("")) {
+            imgIcon.setImageResource(getResources().getIdentifier(question.getImage(), "drawable", "com.example.projectsemiv"));
+        }
+
         if (checkAns != 0) {
-            this.getCheckAns(question.getResult().toString());
+            this.getCheckAns(question.getResult());
             this.setBackgroundErrandCheckedRadio(question);
             radA.setClickable(false);
             radB.setClickable(false);
@@ -153,13 +157,13 @@ public class ScreenSlidePageFragment extends Fragment {
     }
 
     private void getCheckAns(String ans) {
-        if (ans.equals("A") == true) {
+        if (ans.equals("A")) {
             radA.setBackgroundColor(Color.GREEN);
-        } else if (ans.equals("B") == true) {
+        } else if (ans.equals("B")) {
             radB.setBackgroundColor(Color.GREEN);
-        } else if (ans.equals("C") == true) {
+        } else if (ans.equals("C")) {
             radC.setBackgroundColor(Color.GREEN);
-        } else if (ans.equals("D") == true) {
+        } else if (ans.equals("D")) {
             radD.setBackgroundColor(Color.GREEN);
         }
     }

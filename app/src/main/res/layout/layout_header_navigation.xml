@@ -2,19 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:orientation="vertical"
-    android:padding="10dp"
+    android:background="#0088FF"
     android:gravity="bottom"
-    android:background="#0088FF">
+    android:orientation="vertical"
+    android:padding="10dp">
+
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Tran Van Vung"
-        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/info_user_default"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="10dp"/>
+        android:textSize="30dp" />
 </LinearLayout>

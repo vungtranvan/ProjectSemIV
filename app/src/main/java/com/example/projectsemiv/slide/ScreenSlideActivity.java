@@ -81,7 +81,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         tv_total_question = (TextView) findViewById(R.id.tv_total_question);
         tv_next_question = (TextView) findViewById(R.id.tv_next_question);
 
-        if (test.equals("yes") == true) {
+        if (test.equals("yes")) {
             // Fake Data
             arr_Ques = new FakeData().getQuestionFake();
             timer.start();
@@ -90,6 +90,8 @@ public class ScreenSlideActivity extends FragmentActivity {
             timer.cancel();
             tvTimer.setText("00:00");
             checkAns = 1;
+            tvKiemtra.setVisibility(View.GONE);
+            tvXemDiem.setVisibility(View.VISIBLE);
         }
 
         tv_total_question.setText("" + NUM_PAGES);
@@ -165,7 +167,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     private void checkAnswer() {
         dialogCheckAnswer = new Dialog(this);
         dialogCheckAnswer.setContentView(R.layout.check_answer_dialog);
-        dialogCheckAnswer.setTitle("Danh sách câu trả lời");
+        dialogCheckAnswer.setTitle(R.string.list_of_answers);
 
         CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(arr_Ques, this);
         GridView gvLsQuestion = (GridView) dialogCheckAnswer.findViewById(R.id.gvLsQuestion);
@@ -218,9 +220,9 @@ public class ScreenSlideActivity extends FragmentActivity {
 
     private void dialogFinish() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ScreenSlideActivity.this);
-        builder.setTitle("Thông báo");
-        builder.setMessage("Bạn có chắc chắn muốn kết thúc bài thi hay không?");
-        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.notification);
+        builder.setMessage(R.string.notification_end_test);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 timer.cancel();
@@ -228,7 +230,7 @@ public class ScreenSlideActivity extends FragmentActivity {
                 dismissDialogCheckAnswer();
             }
         });
-        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -239,17 +241,16 @@ public class ScreenSlideActivity extends FragmentActivity {
 
     private void dialogExit() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ScreenSlideActivity.this);
-        //builder.setIcon(R.drawable.exit);
-        builder.setTitle("Thông báo");
-        builder.setMessage("Bạn có muốn thoát hay không?");
-        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.notification);
+        builder.setMessage(R.string.notification_exit);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 timer.cancel();
                 finish();
             }
         });
-        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

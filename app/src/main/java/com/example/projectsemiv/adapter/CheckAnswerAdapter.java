@@ -15,9 +15,11 @@ import java.util.List;
 public class CheckAnswerAdapter extends BaseAdapter {
     List lsData;
     LayoutInflater inflater;
+    Context mContext;
 
     public CheckAnswerAdapter(List lsData, Context context) {
         this.lsData = lsData;
+        mContext = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -50,7 +52,8 @@ public class CheckAnswerAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         int i = position + 1;
-        holder.tvNumAns.setText("Câu " + i + ": ");
+
+        holder.tvNumAns.setText(mContext.getResources().getString(R.string.question_no) + " " + i + ": ");
         holder.tvYourAns.setText(data.getTraloi());
         return convertView;
     }

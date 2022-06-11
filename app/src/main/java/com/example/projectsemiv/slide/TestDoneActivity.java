@@ -44,15 +44,15 @@ public class TestDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(TestDoneActivity.this);
-                builder.setTitle("Thông báo");
-                builder.setMessage("Bạn có muốn thoát hay không?");
-                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.notification);
+                builder.setMessage(R.string.notification_exit);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
                 });
-                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -75,12 +75,12 @@ public class TestDoneActivity extends AppCompatActivity {
     }
 
     public void begin() {
-        tvFalse = (TextView) findViewById(R.id.tvFalse);
-        tvTrue = (TextView) findViewById(R.id.tvTrue);
-        tvNotAns = (TextView) findViewById(R.id.tvNotAns);
-        tvTotalScore = (TextView) findViewById(R.id.tvTotalPoint);
-        btnAgain = (Button) findViewById(R.id.btnAgain);
-        btnExit = (Button) findViewById(R.id.btnExit);
+        tvFalse = findViewById(R.id.tvFalse);
+        tvTrue = findViewById(R.id.tvTrue);
+        tvNotAns = findViewById(R.id.tvNotAns);
+        tvTotalScore = findViewById(R.id.tvTotalPoint);
+        btnAgain = findViewById(R.id.btnAgain);
+        btnExit = findViewById(R.id.btnExit);
     }
 
     public void checkResult() {
