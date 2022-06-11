@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ProjectSemIV</string>
+    <string name="home_nav">Trang Chủ</string>
+    <string name="math_nav">Toán Học</string>
+    <string name="history_nav">Lịch Sử</string>
+    <string name="account_nav">Tài Khoản</string>
+    <string name="change_pass_nav">Đổi mật khẩu</string>
+    <string name="my_profile_nav">Thông tin tài khoản</string>
+    <string name="navigation_drawer_open">navigation drawer open</string>
+    <string name="navigation_drawer_close">navigation drawer close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
