@@ -11,14 +11,13 @@ public class User {
     private String image;
     private Date birthday;
     private String address;
-    private String phone;
     private boolean sex;
     private boolean isAdmin;
 
     public User() {
     }
 
-    public User(String userName, String password, String name, String email, String image, Date birthday, String address, String phone, boolean sex, boolean isAdmin) {
+    public User(String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -26,12 +25,11 @@ public class User {
         this.image = image;
         this.birthday = birthday;
         this.address = address;
-        this.phone = phone;
         this.sex = sex;
         this.isAdmin = isAdmin;
     }
 
-    public User(int id, String userName, String password, String name, String email, String image, Date birthday, String address, String phone, boolean sex, boolean isAdmin) {
+    public User(int id, String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -40,7 +38,6 @@ public class User {
         this.image = image;
         this.birthday = birthday;
         this.address = address;
-        this.phone = phone;
         this.sex = sex;
         this.isAdmin = isAdmin;
     }
@@ -107,14 +104,6 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public boolean isSex() {

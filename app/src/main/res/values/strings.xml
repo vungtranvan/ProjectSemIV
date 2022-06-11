@@ -7,6 +7,11 @@
     <string name="account_nav">Tài Khoản</string>
     <string name="change_pass_nav">Đổi mật khẩu</string>
     <string name="my_profile_nav">Thông tin tài khoản</string>
+    <string name="login">Đăng nhập</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="user_name">Tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="donot_have_an_account">Bạn chưa có tài khoản?</string>
     <string name="test">Kiểm tra</string>
     <string name="view_mark">Xem điểm</string>
     <string name="back">Back</string>

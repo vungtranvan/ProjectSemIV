@@ -12,9 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.projectsemiv.fragment.MathFragment;
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
+import com.example.projectsemiv.fragment.MathFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

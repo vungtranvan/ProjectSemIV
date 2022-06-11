@@ -7,6 +7,11 @@
     <string name="account_nav">Account</string>
     <string name="change_pass_nav">Chang password</string>
     <string name="my_profile_nav">My profile</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SignUp</string>
+    <string name="user_name">UserName</string>
+    <string name="password">Password</string>
+    <string name="donot_have_an_account">Don\'t have an Account?</string>
     <string name="test">Test</string>
     <string name="view_mark">View Mark</string>
     <string name="back">Back</string>

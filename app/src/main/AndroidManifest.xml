@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectSemIV">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".slide.TestDoneActivity"
             android:exported="false" />
         <activity
             android:name=".slide.ScreenSlideActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
