@@ -9,6 +9,7 @@
     <string name="my_profile_nav">Thông tin tài khoản</string>
     <string name="login">Đăng nhập</string>
     <string name="sign_up">Đăng ký</string>
+    <string name="nav_logout">Đăng xuất</string>
     <string name="user_name">Tài khoản</string>
     <string name="password">Mật khẩu</string>
     <string name="donot_have_an_account">Bạn chưa có tài khoản?</string>
@@ -30,6 +31,7 @@
     <string name="notification">Thông báo</string>
     <string name="notification_end_test">Bạn có chắc chắn muốn kết thúc bài thi hay không?</string>
     <string name="notification_exit">Bạn có muốn thoát hay không?</string>
+    <string name="notification_logout">Bạn có muốn đăng xuất hay không?</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="question_no_default">Câu 1</string>

@@ -8,6 +8,7 @@
     <string name="change_pass_nav">Chang password</string>
     <string name="my_profile_nav">My profile</string>
     <string name="login">LOGIN</string>
+    <string name="nav_logout">LOGOUT</string>
     <string name="sign_up">SignUp</string>
     <string name="user_name">UserName</string>
     <string name="password">Password</string>
@@ -30,6 +31,7 @@
     <string name="notification">Notification</string>
     <string name="notification_end_test">Are you sure you want to end the test?</string>
     <string name="notification_exit">Do you want to exit or not?</string>
+    <string name="notification_logout">Do you want to logout or not?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="question_no_default">No 1</string>
