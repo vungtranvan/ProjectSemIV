@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
 
         View headerView = navigationView.getHeaderView(0);
-        HashMap<String, String> userInfo = sessionManager.getUserDetailInSession();
+        HashMap<String, String> userInfo = sessionManager.getUserInfoInSession();
         txtUserNameLogged = headerView.findViewById(R.id.txtUserNameLogged);
-        txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_USER_NAME));
+        txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_NAME_USER_DISPLAY));
     }
 
     @Override
@@ -123,8 +123,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void redirectLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
-    
+
     private void dialogLogout() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.notification);

@@ -13,33 +13,47 @@
     <string name="user_name">Tài khoản</string>
     <string name="password">Mật khẩu</string>
     <string name="donot_have_an_account">Bạn chưa có tài khoản?</string>
+
     <string name="test">Kiểm tra</string>
     <string name="view_mark">Xem điểm</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="end">Kết thúc</string>
+
     <string name="correct_question">Câu đúng</string>
     <string name="wrong_question">Câu sai</string>
     <string name="unanswered_question">Câu chưa trả lời</string>
     <string name="total_mark">Tổng điểm</string>
+
     <string name="comeback">Quay lại</string>
     <string name="exit">Thoát</string>
     <string name="cancel">Đóng</string>
+
     <string name="exam_no">Đề số</string>
     <string name="question_no">Câu</string>
     <string name="list_of_answers">Danh sách câu trả lời</string>
+
     <string name="notification">Thông báo</string>
     <string name="notification_end_test">Bạn có chắc chắn muốn kết thúc bài thi hay không?</string>
     <string name="notification_exit">Bạn có muốn thoát hay không?</string>
     <string name="notification_logout">Bạn có muốn đăng xuất hay không?</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
+
     <string name="question_no_default">Câu 1</string>
     <string name="question_content_default">Câu hỏi thứ nhất</string>
     <string name="question_ansA_default">Trả lời A</string>
     <string name="question_ansB_default">Trả lời B</string>
     <string name="question_ansC_default">Trả lời C</string>
     <string name="question_ansD_default">Trả lời D</string>
+
+    <string name="field_can_not_empty">Trường không được để trống</string>
+    <string name="field_max_length">Trường có độ tối đa là</string>
+    <string name="field_min_length">Trường có độ tối thiểu là</string>
+    <string name="email_not_valid">Vui lòng nhập một địa chỉ email hợp lệ</string>
+    <string name="password_too_weak">Mật khẩu quá yếu</string>
+
+    <string name="username_or_password_not_correct">Tài khoản hoặc mật khẩu không chính xác</string>
 
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>
