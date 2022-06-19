@@ -53,7 +53,10 @@
     <string name="email_not_valid">Vui lòng nhập một địa chỉ email hợp lệ</string>
     <string name="password_too_weak">Mật khẩu quá yếu</string>
 
-    <string name="username_or_password_not_correct">Tài khoản hoặc mật khẩu không chính xác</string>
+    <string name="password_not_correct">Mật khẩu không chính xác</string>
+    <string name="username_not_exist">Tài khoản không tồn tại</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <string name="server_error">Lỗi server</string>
 
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>

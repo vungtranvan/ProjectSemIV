@@ -1,8 +1,9 @@
 package com.example.projectsemiv.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class Account implements Serializable {
     private int id;
     private String userName;
     private String password;
@@ -13,11 +14,13 @@ public class User {
     private String address;
     private boolean sex;
     private boolean isAdmin;
+    private Date createdDate;
+    private Date updatedDate;
 
-    public User() {
+    public Account() {
     }
 
-    public User(String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
+    public Account(String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -29,7 +32,7 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public User(int id, String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
+    public Account(int id, String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -120,5 +123,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

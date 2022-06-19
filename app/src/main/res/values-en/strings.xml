@@ -47,7 +47,10 @@
     <string name="email_not_valid">Please enter a valid email address</string>
     <string name="password_too_weak">Password too weak</string>
 
-    <string name="username_or_password_not_correct">Username or password is not correct</string>
+    <string name="password_not_correct">Password is not correct</string>
+    <string name="username_not_exist">User does not exist</string>
+    <string name="login_success">Login success</string>
+    <string name="server_error">Server error</string>
 
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>

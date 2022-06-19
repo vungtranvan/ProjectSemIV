@@ -6,13 +6,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
+import com.example.projectsemiv.services.ApiService;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends FragmentActivity {
 
@@ -45,12 +60,29 @@ public class LoginActivity extends FragmentActivity {
                     return;
                 }
 
-                if (txtUserName.getEditText().getText().toString().equals("Admin") && txtPassword.getEditText().getText().toString().equals("Admin@123")) {
-                    sessionManager.createLoginSession(txtUserName.getEditText().getText().toString(), "Trần Văn Vững", "image_user_default", "Admin");
-                    redirectMainActivity();
-                } else {
-                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.username_or_password_not_correct), Toast.LENGTH_SHORT).show();
-                }
+                ApiService.apiService.getAccountByUserName(txtUserName.getEditText().getText().toString()).enqueue(new Callback<Account>() {
+                    @Override
+                    public void onResponse(Call<Account> call, Response<Account> response) {
+                        Account account = response.body();
+                        if (account == null) {
+                            Toast.makeText(LoginActivity.this, getResources().getString(R.string.username_not_exist), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (!account.getPassword().equals(txtPassword.getEditText().getText().toString())) {
+                            Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_not_correct), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isAdmin() ? "Admin" : "Member");
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                        redirectMainActivity();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Account> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }

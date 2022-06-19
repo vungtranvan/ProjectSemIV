@@ -1,47 +1,62 @@
 package com.example.projectsemiv.entity;
 
+import java.util.Date;
+
 public class Question {
-    private int id;
+
+    private Integer id;
     private String name;
-    private int categoryExamId;
-    private String answer_a;
-    private String answer_b;
-    private String answer_c;
-    private String answer_d;
-    private String answer_correct;
+    private String answera;
+    private String answerb;
+    private String answerc;
+    private String answerd;
+    private String answerCorrect;
     private String image;
+    private Date createdDate;
+    private Date updatedDate;
 
     public Question() {
     }
 
-    public Question(String name, int categoryExamId, String answer_a, String answer_b, String answer_c, String answer_d, String answer_correct, String image) {
+    public Question(String name, String answera, String answerb, String answerc, String answerd, String answerCorrect, String image) {
         this.name = name;
-        this.categoryExamId = categoryExamId;
-        this.answer_a = answer_a;
-        this.answer_b = answer_b;
-        this.answer_c = answer_c;
-        this.answer_d = answer_d;
-        this.answer_correct = answer_correct;
+        this.answera = answera;
+        this.answerb = answerb;
+        this.answerc = answerc;
+        this.answerd = answerd;
+        this.answerCorrect = answerCorrect;
         this.image = image;
     }
 
-    public Question(int id, String name, int categoryExamId, String answer_a, String answer_b, String answer_c, String answer_d, String answer_correct, String image) {
+    public Question(Integer id, String name, String answera, String answerb, String answerc, String answerd, String answerCorrect, String image) {
         this.id = id;
         this.name = name;
-        this.categoryExamId = categoryExamId;
-        this.answer_a = answer_a;
-        this.answer_b = answer_b;
-        this.answer_c = answer_c;
-        this.answer_d = answer_d;
-        this.answer_correct = answer_correct;
+        this.answera = answera;
+        this.answerb = answerb;
+        this.answerc = answerc;
+        this.answerd = answerd;
+        this.answerCorrect = answerCorrect;
         this.image = image;
     }
 
-    public int getId() {
+    public Question(Integer id, String name, String answera, String answerb, String answerc, String answerd, String answerCorrect, String image, Date createdDate, Date updatedDate) {
+        this.id = id;
+        this.name = name;
+        this.answera = answera;
+        this.answerb = answerb;
+        this.answerc = answerc;
+        this.answerd = answerd;
+        this.answerCorrect = answerCorrect;
+        this.image = image;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,52 +68,44 @@ public class Question {
         this.name = name;
     }
 
-    public int getCategoryExamId() {
-        return categoryExamId;
+    public String getAnswera() {
+        return answera;
     }
 
-    public void setCategoryExamId(int categoryExamId) {
-        this.categoryExamId = categoryExamId;
+    public void setAnswera(String answera) {
+        this.answera = answera;
     }
 
-    public String getAnswer_a() {
-        return answer_a;
+    public String getAnswerb() {
+        return answerb;
     }
 
-    public void setAnswer_a(String answer_a) {
-        this.answer_a = answer_a;
+    public void setAnswerb(String answerb) {
+        this.answerb = answerb;
     }
 
-    public String getAnswer_b() {
-        return answer_b;
+    public String getAnswerc() {
+        return answerc;
     }
 
-    public void setAnswer_b(String answer_b) {
-        this.answer_b = answer_b;
+    public void setAnswerc(String answerc) {
+        this.answerc = answerc;
     }
 
-    public String getAnswer_c() {
-        return answer_c;
+    public String getAnswerd() {
+        return answerd;
     }
 
-    public void setAnswer_c(String answer_c) {
-        this.answer_c = answer_c;
+    public void setAnswerd(String answerd) {
+        this.answerd = answerd;
     }
 
-    public String getAnswer_d() {
-        return answer_d;
+    public String getAnswerCorrect() {
+        return answerCorrect;
     }
 
-    public void setAnswer_d(String answer_d) {
-        this.answer_d = answer_d;
-    }
-
-    public String getAnswer_correct() {
-        return answer_correct;
-    }
-
-    public void setAnswer_correct(String answer_correct) {
-        this.answer_correct = answer_correct;
+    public void setAnswerCorrect(String answerCorrect) {
+        this.answerCorrect = answerCorrect;
     }
 
     public String getImage() {
@@ -107,5 +114,21 @@ public class Question {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }
