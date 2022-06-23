@@ -13,6 +13,7 @@
     <string name="user_name">UserName</string>
     <string name="password">Password</string>
     <string name="donot_have_an_account">Don\'t have an Account?</string>
+    <string name="have_an_account">You have an Account?</string>
     <string name="test">Test</string>
     <string name="view_mark">View Mark</string>
     <string name="back">Back</string>
@@ -46,12 +47,25 @@
     <string name="field_min_length">The field min length is</string>
     <string name="email_not_valid">Please enter a valid email address</string>
     <string name="password_too_weak">Password too weak</string>
+    <string name="confirm_password_is_correct">Confirm password is correct password</string>
 
     <string name="password_not_correct">Password is not correct</string>
     <string name="username_not_exist">User does not exist</string>
+    <string name="username_exist">User existed</string>
+    <string name="email_exist">Email existed</string>
     <string name="login_success">Login success</string>
     <string name="server_error">Server error</string>
 
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>
+
+    <string name="name_of_user">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="sex">Sex</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
 </resources>

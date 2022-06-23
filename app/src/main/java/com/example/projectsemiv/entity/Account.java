@@ -10,7 +10,6 @@ public class Account implements Serializable {
     private String name;
     private String email;
     private String image;
-    private Date birthday;
     private String address;
     private boolean sex;
     private boolean isAdmin;
@@ -20,26 +19,24 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
+    public Account(String userName, String password, String name, String email, String image, String address, boolean sex, boolean isAdmin) {
         this.userName = userName;
         this.password = password;
         this.name = name;
         this.email = email;
         this.image = image;
-        this.birthday = birthday;
         this.address = address;
         this.sex = sex;
         this.isAdmin = isAdmin;
     }
 
-    public Account(int id, String userName, String password, String name, String email, String image, Date birthday, String address, boolean sex, boolean isAdmin) {
+    public Account(int id, String userName, String password, String name, String email, String image, String address, boolean sex, boolean isAdmin) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.name = name;
         this.email = email;
         this.image = image;
-        this.birthday = birthday;
         this.address = address;
         this.sex = sex;
         this.isAdmin = isAdmin;
@@ -91,14 +88,6 @@ public class Account implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public String getAddress() {

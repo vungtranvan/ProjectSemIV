@@ -26,6 +26,7 @@ public class ValidateHelper {
 
 
     private Context mContext;
+
     public ValidateHelper(Context context) {
         mContext = context;
     }
@@ -54,7 +55,7 @@ public class ValidateHelper {
         if (passwordInput.isEmpty()) {
             input.setError(mContext.getResources().getString(R.string.field_can_not_empty));
             return false;
-        }else if (passwordInput.length() < minLength) {
+        } else if (passwordInput.length() < minLength) {
             input.setError(mContext.getResources().getString(R.string.field_min_length) + ": " + minLength);
             return false;
         } else if (passwordInput.length() > maxLength) {
@@ -69,7 +70,31 @@ public class ValidateHelper {
         }
     }
 
-    private boolean isEmail(TextInputLayout input) {
+    public boolean isConfirmPassword(TextInputLayout input, int minLength, int maxLength, String value) {
+        String passwordInput = input.getEditText().getText().toString().trim();
+
+        if (passwordInput.isEmpty()) {
+            input.setError(mContext.getResources().getString(R.string.field_can_not_empty));
+            return false;
+        } else if (passwordInput.length() < minLength) {
+            input.setError(mContext.getResources().getString(R.string.field_min_length) + ": " + minLength);
+            return false;
+        } else if (passwordInput.length() > maxLength) {
+            input.setError(mContext.getResources().getString(R.string.field_max_length) + ": " + maxLength);
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+            input.setError(mContext.getResources().getString(R.string.password_too_weak));
+            return false;
+        } else if (!passwordInput.equals(value)) {
+            input.setError(mContext.getResources().getString(R.string.confirm_password_is_correct));
+            return false;
+        } else {
+            input.setError(null);
+            return true;
+        }
+    }
+
+    public boolean isEmail(TextInputLayout input) {
         String emailInput = input.getEditText().getText().toString().trim();
 
         if (emailInput.isEmpty()) {

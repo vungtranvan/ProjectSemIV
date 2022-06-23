@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectsemiv.entity.Account;
@@ -83,6 +84,16 @@ public class LoginActivity extends FragmentActivity {
                     }
                 });
 
+            }
+        });
+
+        TextView btnRegister = findViewById(R.id.tvSignUp);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

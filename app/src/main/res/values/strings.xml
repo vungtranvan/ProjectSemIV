@@ -13,6 +13,7 @@
     <string name="user_name">Tài khoản</string>
     <string name="password">Mật khẩu</string>
     <string name="donot_have_an_account">Bạn chưa có tài khoản?</string>
+    <string name="have_an_account">Bạn đã có tài khoản?</string>
 
     <string name="test">Kiểm tra</string>
     <string name="view_mark">Xem điểm</string>
@@ -52,12 +53,25 @@
     <string name="field_min_length">Trường có độ tối thiểu là</string>
     <string name="email_not_valid">Vui lòng nhập một địa chỉ email hợp lệ</string>
     <string name="password_too_weak">Mật khẩu quá yếu</string>
+    <string name="confirm_password_is_correct">Nhập lại mật khẩu không trùng khớp</string>
 
     <string name="password_not_correct">Mật khẩu không chính xác</string>
     <string name="username_not_exist">Tài khoản không tồn tại</string>
+    <string name="username_exist">Tài khoản đã tồn tại</string>
+    <string name="email_exist">Email đã tồn tại</string>
     <string name="login_success">Đăng nhập thành công</string>
     <string name="server_error">Lỗi server</string>
 
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>
+
+    <string name="name_of_user">Tên người dùng</string>
+    <string name="confirm_password">Nhập lại mật khẩu</string>
+    <string name="email">Email</string>
+    <string name="address">Địa chỉ</string>
+    <string name="sex">Giới tính</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="success">Thành công</string>
+    <string name="error">Thất bại</string>
 </resources>
