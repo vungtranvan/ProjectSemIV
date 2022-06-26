@@ -73,7 +73,7 @@ public class LoginActivity extends FragmentActivity {
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_not_correct), Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isAdmin() ? "Admin" : "Member");
+                        sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isIsAdmin() ? "Admin" : "Member");
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                         redirectMainActivity();
                     }

@@ -131,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
             paramObject.put("image", account.getImage());
             paramObject.put("address", account.getAddress());
             paramObject.put("sex", account.isSex());
-            paramObject.put("isAdmin", account.isAdmin());
+            paramObject.put("isAdmin", account.isIsAdmin());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -142,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean bl = Boolean.parseBoolean(response.body());
                 if (bl) {
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
-                    sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isAdmin() ? "Admin" : "Member");
+                    sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isIsAdmin() ? "Admin" : "Member");
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                     redirectMainActivity();
                 } else {

@@ -4,6 +4,7 @@
     <string name="home_nav">Trang Chủ</string>
     <string name="math_nav">Toán Học</string>
     <string name="history_nav">Lịch Sử</string>
+    <string name="manager_account_nav">Quản lý tài khoản</string>
     <string name="account_nav">Tài Khoản</string>
     <string name="change_pass_nav">Đổi mật khẩu</string>
     <string name="my_profile_nav">Thông tin tài khoản</string>
@@ -38,6 +39,7 @@
     <string name="notification_end_test">Bạn có chắc chắn muốn kết thúc bài thi hay không?</string>
     <string name="notification_exit">Bạn có muốn thoát hay không?</string>
     <string name="notification_logout">Bạn có muốn đăng xuất hay không?</string>
+    <string name="notification_confirm_delete">Bạn có muốn xóa hay không?</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
 
@@ -74,4 +76,16 @@
     <string name="female">Nữ</string>
     <string name="success">Thành công</string>
     <string name="error">Thất bại</string>
+    <string name="edit">Sửa</string>
+    <string name="delete">Xóa</string>
+    <string name="add_account">Thêm mới tài khoản</string>
+    <string name="acc_name_of_user">Tên:</string>
+    <string name="acc_user_name">Tài khoản:</string>
+    <string name="acc_email">Email:</string>
+    <string name="acc_address">Địa chỉ:</string>
+    <string name="acc_sex">Giới tính:</string>
+    <string name="acc_type">Loại tài khoản:</string>
+    <string name="acc_type_admin">Quản trị</string>
+    <string name="acc_type_member">Thành viên</string>
+    <string name="delete_acc_admin_error">Không thể xóa tài khoản admin mặc định</string>
 </resources>

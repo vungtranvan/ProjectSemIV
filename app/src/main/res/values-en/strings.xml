@@ -5,6 +5,7 @@
     <string name="math_nav">Math</string>
     <string name="history_nav">History</string>
     <string name="account_nav">Account</string>
+    <string name="manager_account_nav">Manager Account</string>
     <string name="change_pass_nav">Chang password</string>
     <string name="my_profile_nav">My profile</string>
     <string name="login">LOGIN</string>
@@ -33,6 +34,7 @@
     <string name="notification_end_test">Are you sure you want to end the test?</string>
     <string name="notification_exit">Do you want to exit or not?</string>
     <string name="notification_logout">Do you want to logout or not?</string>
+    <string name="notification_confirm_delete">Do you want to delete or not?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="question_no_default">No 1</string>
@@ -68,4 +70,16 @@
     <string name="female">Female</string>
     <string name="success">Success</string>
     <string name="error">Error</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_account">Add Account</string>
+    <string name="acc_name_of_user">Name: </string>
+    <string name="acc_user_name">UserName: </string>
+    <string name="acc_email">Email: </string>
+    <string name="acc_address">Address: </string>
+    <string name="acc_sex">Sex: </string>
+    <string name="acc_type">Type Account:</string>
+    <string name="acc_type_admin">Admin</string>
+    <string name="acc_type_member">Member</string>
+    <string name="delete_acc_admin_error">Unable to delete default admin account</string>
 </resources>

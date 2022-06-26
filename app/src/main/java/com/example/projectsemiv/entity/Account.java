@@ -13,10 +13,12 @@ public class Account implements Serializable {
     private String address;
     private boolean sex;
     private boolean isAdmin;
-    private Date createdDate;
-    private Date updatedDate;
 
     public Account() {
+    }
+
+    public Account(int id) {
+        this.id = id;
     }
 
     public Account(String userName, String password, String name, String email, String image, String address, boolean sex, boolean isAdmin) {
@@ -106,27 +108,11 @@ public class Account implements Serializable {
         this.sex = sex;
     }
 
-    public boolean isAdmin() {
+    public boolean isIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

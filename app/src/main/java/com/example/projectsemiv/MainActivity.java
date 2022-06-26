@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
+import com.example.projectsemiv.fragment.ManagerAccountFragment;
 import com.example.projectsemiv.fragment.MathFragment;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.slide.ScreenSlideActivity;
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int Fragment_Home = 0;
     private static final int Fragment_Math = 1;
-    private static final int Fragment_History = 2;
+    private static final int Fragment_Manager_Account = 2;
+    private static final int Fragment_History = 3;
     private int mCurrentFragment = Fragment_Home;
 
     private DrawerLayout mdrawerLayout;
@@ -89,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mCurrentFragment != Fragment_Math) {
                     replaceFragment(new MathFragment());
                     mCurrentFragment = Fragment_Math;
+                }
+                break;
+            case R.id.manager_account_nav:
+                if (mCurrentFragment != Fragment_Manager_Account) {
+                    replaceFragment(new ManagerAccountFragment());
+                    mCurrentFragment = Fragment_Manager_Account;
                 }
                 break;
             case R.id.nav_history:
