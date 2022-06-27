@@ -1,5 +1,6 @@
 package com.example.projectsemiv.fragment;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import retrofit2.Response;
 public class ManagerAccountFragment extends Fragment {
 
     private List<Account> mListAccount;
+    private ProgressDialog mProgressDialog;
 
     public ManagerAccountFragment() {
     }
@@ -52,6 +54,9 @@ public class ManagerAccountFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
+
         getListAccount(null);
 
         Button btnAddNewAccount = getActivity().findViewById(R.id.btnAddNewAccount);
@@ -109,6 +114,7 @@ public class ManagerAccountFragment extends Fragment {
             Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_admin_error), Toast.LENGTH_SHORT).show();
             return;
         }
+        mProgressDialog.show();
         ApiService.apiService.deleteAccountById(id).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -117,18 +123,21 @@ public class ManagerAccountFragment extends Fragment {
                     Toast.makeText(getContext(), getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
                     getListAccount(null);
                 } else {
+                    mProgressDialog.dismiss();
                     Toast.makeText(getContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void getListAccount(String keyword) {
+        mProgressDialog.show();
         ApiService.apiService.getAllAccount(keyword).enqueue(new Callback<List<Account>>() {
             @Override
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
@@ -141,10 +150,12 @@ public class ManagerAccountFragment extends Fragment {
                 AccountAdapter adapter = new AccountAdapter(getContext(), mListAccount);
                 listView.setAdapter(adapter);
                 registerForContextMenu(listView);
+                mProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
