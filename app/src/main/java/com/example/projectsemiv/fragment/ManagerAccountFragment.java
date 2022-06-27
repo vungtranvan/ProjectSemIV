@@ -1,6 +1,7 @@
 package com.example.projectsemiv.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +15,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.projectsemiv.LoginActivity;
 import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.RegisterActivity;
+import com.example.projectsemiv.activity.AddAccountActivity;
 import com.example.projectsemiv.adapter.AccountAdapter;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.services.ApiService;
@@ -49,6 +53,15 @@ public class ManagerAccountFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getListAccount(null);
+
+        Button btnAddNewAccount = getActivity().findViewById(R.id.btnAddNewAccount);
+        btnAddNewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddAccountActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -63,7 +76,7 @@ public class ManagerAccountFragment extends Fragment {
         Account account = mListAccount.get(info.position);
         switch (item.getItemId()) {
             case R.id.menuUpdate:
-                Toast.makeText(getActivity().getApplicationContext(), "Edit " + account.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Edit " + account.getName(), Toast.LENGTH_LONG).show();
                 break;
             case R.id.menuDelete:
                 dialogConfirm(account.getId());
@@ -125,15 +138,21 @@ public class ManagerAccountFragment extends Fragment {
                     mListAccount = new ArrayList<>();
                 }
                 ListView listView = getActivity().findViewById(R.id.listViewAccount);
-                AccountAdapter adapter = new AccountAdapter(getActivity().getApplicationContext(), mListAccount);
+                AccountAdapter adapter = new AccountAdapter(getContext(), mListAccount);
                 listView.setAdapter(adapter);
                 registerForContextMenu(listView);
             }
 
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getListAccount(null);
     }
 }

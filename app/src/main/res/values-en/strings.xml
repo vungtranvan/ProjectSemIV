@@ -82,4 +82,6 @@
     <string name="acc_type_admin">Admin</string>
     <string name="acc_type_member">Member</string>
     <string name="delete_acc_admin_error">Unable to delete default admin account</string>
+    <string name="add">Add</string>
+    <string name="image">Image</string>
 </resources>
