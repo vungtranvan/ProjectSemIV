@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.projectsemiv.R;
+import com.example.projectsemiv.activity.AddAccountActivity;
 import com.example.projectsemiv.entity.Account;
 
 import java.util.List;
@@ -40,9 +42,12 @@ public class AccountAdapter extends ArrayAdapter<Account> {
         TextView tvSexAcc = v.findViewById(R.id.tvSexAcc);
         TextView tvAddressAcc = v.findViewById(R.id.tvAddressAcc);
 
-        //CircleImageView imgAccountView = v.findViewById(R.id.imgAccountView);
-        //if (account.getImage() != null)
-            //imgAccountView.setImageResource(mCtx.getResources().getIdentifier(account.getImage(), "drawable", "com.example.projectsemiv"));
+        CircleImageView imgAccountView = v.findViewById(R.id.imgAccountView);
+        if (account.getImage() != null) {
+            Glide.with(mCtx).load(account.getImage()).into(imgAccountView);
+        } else {
+            imgAccountView.setImageResource(R.mipmap.ic_launcher);
+        }
 
         tvNameAcc.setText(account.getName());
         tvUserNameAcc.setText(account.getUserName());

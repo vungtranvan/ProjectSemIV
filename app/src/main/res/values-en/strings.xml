@@ -84,4 +84,6 @@
     <string name="delete_acc_admin_error">Unable to delete default admin account</string>
     <string name="add">Add</string>
     <string name="image">Image</string>
+    <string name="upload_image_false">Upload Image false</string>
+    <string name="please_wait">Please wait...</string>
 </resources>

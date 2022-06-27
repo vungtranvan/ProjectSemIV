@@ -90,4 +90,6 @@
     <string name="delete_acc_admin_error">Không thể xóa tài khoản admin mặc định</string>
     <string name="add">Thêm mới</string>
     <string name="image">Ảnh</string>
+    <string name="upload_image_false">Upload ảnh thất bại</string>
+    <string name="please_wait">Đang xử lý...</string>
 </resources>

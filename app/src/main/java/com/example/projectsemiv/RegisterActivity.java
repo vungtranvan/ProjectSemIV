@@ -2,6 +2,7 @@ package com.example.projectsemiv;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout txtUserName, txtName, txtEmail, txtAddress, txtPassword, txtConfirmPassword;
     private RadioButton rdMaleOfResgiter, rdFemaleOfResgiter;
     private ValidateHelper validateHelper;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         validateHelper = new ValidateHelper(RegisterActivity.this);
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
 
         txtUserName = findViewById(R.id.txtUserNameOfResgiter);
         txtPassword = findViewById(R.id.txtPasswordOfResgiter);
@@ -64,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                 ) {
                     return;
                 }
-
+                mProgressDialog.show();
                 checkDuplicateUserName();
             }
         });
@@ -84,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 Account account = response.body();
                 if (account != null) {
+                    mProgressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.username_exist), Toast.LENGTH_SHORT).show();
                 } else {
                     checkDuplicateEmail();
@@ -92,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(RegisterActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
@@ -104,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 Account account = response.body();
                 if (account != null) {
+                    mProgressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.email_exist), Toast.LENGTH_SHORT).show();
                 }else{
                     CallApi();
@@ -112,6 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(RegisterActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
@@ -146,12 +155,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                     redirectMainActivity();
                 } else {
+                    mProgressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(RegisterActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });

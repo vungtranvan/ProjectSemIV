@@ -2,6 +2,7 @@ package com.example.projectsemiv;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,6 +36,7 @@ public class LoginActivity extends FragmentActivity {
     private SessionManager sessionManager;
     private TextInputLayout txtUserName, txtPassword;
     private ValidateHelper validateHelper;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class LoginActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         validateHelper = new ValidateHelper(LoginActivity.this);
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
 
         txtUserName = findViewById(R.id.txtUserName);
         txtPassword = findViewById(R.id.txtPassword);
@@ -60,26 +65,30 @@ public class LoginActivity extends FragmentActivity {
                 ) {
                     return;
                 }
-
+                mProgressDialog.show();
                 ApiService.apiService.getAccountByUserName(txtUserName.getEditText().getText().toString()).enqueue(new Callback<Account>() {
                     @Override
                     public void onResponse(Call<Account> call, Response<Account> response) {
                         Account account = response.body();
                         if (account == null) {
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.username_not_exist), Toast.LENGTH_SHORT).show();
+                            mProgressDialog.dismiss();
                             return;
                         }
                         if (!account.getPassword().equals(txtPassword.getEditText().getText().toString())) {
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_not_correct), Toast.LENGTH_SHORT).show();
+                            mProgressDialog.dismiss();
                             return;
                         }
                         sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isIsAdmin() ? "Admin" : "Member");
+                        mProgressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                         redirectMainActivity();
                     }
 
                     @Override
                     public void onFailure(Call<Account> call, Throwable t) {
+                        mProgressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
                     }
                 });
