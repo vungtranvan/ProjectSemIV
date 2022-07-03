@@ -5,14 +5,17 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/home_nav" />
-        <item
-            android:id="@+id/nav_math"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/math_nav" />
+
         <item
             android:id="@+id/manager_account_nav"
-            android:icon="@drawable/ic_history"
+            android:icon="@android:drawable/ic_input_get"
             android:title="@string/manager_account_nav" />
+
+        <item
+            android:id="@+id/manager_question_nav"
+            android:icon="@android:drawable/ic_input_get"
+            android:title="@string/manager_question_nav" />
+
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history"

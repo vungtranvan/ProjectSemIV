@@ -22,7 +22,7 @@ public class MathFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.math_nav);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.manager_question_nav);
         return inflater.inflate(R.layout.fragment_math, container, false);
     }
 

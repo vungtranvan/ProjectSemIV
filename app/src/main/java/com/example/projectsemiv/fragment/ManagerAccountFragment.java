@@ -12,12 +12,16 @@ import androidx.fragment.app.Fragment;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectsemiv.LoginActivity;
@@ -25,8 +29,10 @@ import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.RegisterActivity;
 import com.example.projectsemiv.activity.AddAccountActivity;
+import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.adapter.AccountAdapter;
 import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.services.ApiService;
 
 import java.util.ArrayList;
@@ -40,6 +46,8 @@ public class ManagerAccountFragment extends Fragment {
 
     private List<Account> mListAccount;
     private ProgressDialog mProgressDialog;
+    private TextView noData;
+    private SessionManager sessionManager;
 
     public ManagerAccountFragment() {
     }
@@ -48,6 +56,7 @@ public class ManagerAccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.manager_account_nav);
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_manager_account, container, false);
     }
 
@@ -56,17 +65,48 @@ public class ManagerAccountFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
-
+        sessionManager = new SessionManager(getContext());
+        noData = getActivity().findViewById(R.id.noData);
         getListAccount(null);
+    }
 
-        Button btnAddNewAccount = getActivity().findViewById(R.id.btnAddNewAccount);
-        btnAddNewAccount.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddAccountActivity.class);
-                startActivity(intent);
+            public boolean onQueryTextSubmit(String s) {
+                getListAccount(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                getListAccount(null);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idMenu = item.getItemId();
+        switch (idMenu) {
+            case R.id.menuAddNewData:
+                Intent intent = new Intent(getActivity(), AddAccountActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -81,7 +121,9 @@ public class ManagerAccountFragment extends Fragment {
         Account account = mListAccount.get(info.position);
         switch (item.getItemId()) {
             case R.id.menuUpdate:
-                Toast.makeText(getContext(), "Edit " + account.getName(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), UpdateAccountActivity.class);
+                intent.putExtra("idAcc", account.getId());
+                startActivity(intent);
                 break;
             case R.id.menuDelete:
                 dialogConfirm(account.getId());
@@ -110,10 +152,15 @@ public class ManagerAccountFragment extends Fragment {
     }
 
     private void deleteAccount(int id) {
+        if (id == sessionManager.getUserIdInSession()){
+            Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_logged_error), Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (id == 1) {
             Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_admin_error), Toast.LENGTH_SHORT).show();
             return;
         }
+
         mProgressDialog.show();
         ApiService.apiService.deleteAccountById(id).enqueue(new Callback<String>() {
             @Override
@@ -143,9 +190,13 @@ public class ManagerAccountFragment extends Fragment {
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
                 mListAccount = response.body();
 
-                if (mListAccount == null) {
+                if (mListAccount == null || mListAccount.size() == 0) {
                     mListAccount = new ArrayList<>();
+                    noData.setVisibility(View.VISIBLE);
+                }else{
+                    noData.setVisibility(View.GONE);
                 }
+
                 ListView listView = getActivity().findViewById(R.id.listViewAccount);
                 AccountAdapter adapter = new AccountAdapter(getContext(), mListAccount);
                 listView.setAdapter(adapter);

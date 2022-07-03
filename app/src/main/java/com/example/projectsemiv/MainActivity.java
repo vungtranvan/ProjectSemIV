@@ -15,8 +15,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
 import com.example.projectsemiv.fragment.ManagerAccountFragment;
@@ -26,6 +29,8 @@ import com.example.projectsemiv.slide.ScreenSlideActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,11 +67,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-
+        if (!sessionManager.getRoleUserInSession()) {
+            navigationView.getMenu().findItem(R.id.nav_history).setVisible(false);
+            navigationView.getMenu().findItem(R.id.manager_account_nav).setVisible(false);
+            navigationView.getMenu().findItem(R.id.manager_question_nav).setVisible(false);
+        }
         View headerView = navigationView.getHeaderView(0);
         HashMap<String, String> userInfo = sessionManager.getUserInfoInSession();
         txtUserNameLogged = headerView.findViewById(R.id.txtUserNameLogged);
-        txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_NAME_USER_DISPLAY));
+        txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_NAME_DISPLAY_USER));
+        String imgAccLogged = userInfo.get(SessionManager.KEY_USER_IMAGE);
+        if (imgAccLogged != null){
+            Glide.with(MainActivity.this).load(imgAccLogged).into((CircleImageView) headerView.findViewById(R.id.imgUserLogged));
+        }
     }
 
     @Override
@@ -87,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mCurrentFragment = Fragment_Home;
                 }
                 break;
-            case R.id.nav_math:
+            case R.id.manager_question_nav:
                 if (mCurrentFragment != Fragment_Math) {
                     replaceFragment(new MathFragment());
                     mCurrentFragment = Fragment_Math;

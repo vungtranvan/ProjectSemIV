@@ -2,7 +2,7 @@
     <string name="app_name">Exam Test</string>
     <string name="info_user_default">Tran Van Vung</string>
     <string name="home_nav">Home</string>
-    <string name="math_nav">Math</string>
+    <string name="manager_question_nav">Manager Question</string>
     <string name="history_nav">History</string>
     <string name="account_nav">Account</string>
     <string name="manager_account_nav">Manager Account</string>
@@ -73,6 +73,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="add_account">Add Account</string>
+    <string name="edit_account">Update Account</string>
     <string name="acc_name_of_user">Name: </string>
     <string name="acc_user_name">UserName: </string>
     <string name="acc_email">Email: </string>
@@ -82,8 +83,10 @@
     <string name="acc_type_admin">Admin</string>
     <string name="acc_type_member">Member</string>
     <string name="delete_acc_admin_error">Unable to delete default admin account</string>
+    <string name="delete_acc_logged_error">Unable to delete account logged</string>
     <string name="add">Add</string>
     <string name="image">Image</string>
     <string name="upload_image_false">Upload Image false</string>
     <string name="please_wait">Please wait...</string>
+    <string name="no_data">No Data</string>
 </resources>

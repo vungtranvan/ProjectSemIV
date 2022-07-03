@@ -105,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
     private void checkDuplicateEmail() {
         ApiService.apiService.getAccountByEmail(txtEmail.getEditText().getText().toString()).enqueue(new Callback<Account>() {
             @Override
@@ -113,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (account != null) {
                     mProgressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.email_exist), Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     CallApi();
                 }
             }
@@ -127,31 +128,27 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void CallApi() {
-        Account account = new Account(txtUserName.getEditText().getText().toString(),
-                txtPassword.getEditText().getText().toString(), txtName.getEditText().getText().toString(),
-                txtEmail.getEditText().getText().toString(), "img_default",
-                txtAddress.getEditText().getText().toString(), rdMaleOfResgiter.isChecked(), false);
         JSONObject paramObject = new JSONObject();
         try {
-            paramObject.put("userName", account.getUserName());
-            paramObject.put("password", account.getPassword());
-            paramObject.put("name", account.getName());
-            paramObject.put("email", account.getEmail());
-            paramObject.put("image", account.getImage());
-            paramObject.put("address", account.getAddress());
-            paramObject.put("sex", account.isSex());
-            paramObject.put("isAdmin", account.isIsAdmin());
+            paramObject.put("userName", txtUserName.getEditText().getText().toString());
+            paramObject.put("password", txtPassword.getEditText().getText().toString());
+            paramObject.put("name", txtName.getEditText().getText().toString());
+            paramObject.put("email", txtEmail.getEditText().getText().toString());
+            paramObject.put("image", null);
+            paramObject.put("address", txtAddress.getEditText().getText().toString());
+            paramObject.put("sex", rdMaleOfResgiter.isChecked());
+            paramObject.put("isAdmin", false);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ApiService.apiService.addAccount(paramObject.toString()).enqueue(new Callback<String>() {
+        ApiService.apiService.registerAccount(paramObject.toString()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                boolean bl = Boolean.parseBoolean(response.body());
-                if (bl) {
+                int idCreate = Integer.parseInt(response.body());
+                if (idCreate != 0) {
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
-                    sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isIsAdmin() ? "Admin" : "Member");
+                    sessionManager.createLoginSession(response.body(), txtUserName.getEditText().getText().toString(), null, "false");
                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                     redirectMainActivity();
                 } else {
@@ -173,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     private void redirectLoginActivity() {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);

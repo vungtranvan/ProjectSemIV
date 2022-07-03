@@ -80,7 +80,7 @@ public class LoginActivity extends FragmentActivity {
                             mProgressDialog.dismiss();
                             return;
                         }
-                        sessionManager.createLoginSession(account.getUserName(), account.getName(), account.getImage(), account.isIsAdmin() ? "Admin" : "Member");
+                        sessionManager.createLoginSession(String.valueOf(account.getId()), account.getName(), account.getImage(), String.valueOf(account.isIsAdmin()));
                         mProgressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                         redirectMainActivity();

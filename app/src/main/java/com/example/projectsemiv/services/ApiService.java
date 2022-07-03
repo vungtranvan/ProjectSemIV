@@ -58,12 +58,16 @@ public interface ApiService {
     Call<String> addAccount(@Body String strData);
 
     @Headers("Content-Type: application/json")
+    @POST("account/registerAccount")
+    Call<String> registerAccount(@Body String strData);
+
+    @Headers("Content-Type: application/json")
     @POST("account/updatePasswordByUsername")
     Call<String> updatePasswordByUsername(@Body ChangPasswordDto entity);
 
     @Headers("Content-Type: application/json")
     @PUT("account/editAccount")
-    Call<String> editAccount(@Body Account entity);
+    Call<String> editAccount(@Body String strData);
 
     @DELETE("account/deleteAccount/{id}")
     Call<String> deleteAccountById(@Path("id") int id);
