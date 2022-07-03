@@ -89,4 +89,8 @@
     <string name="upload_image_false">Upload Image false</string>
     <string name="please_wait">Please wait...</string>
     <string name="no_data">No Data</string>
+    <string name="category_exam_name">Exam name:</string>
+    <string name="question_name">Question name:</string>
+    <string name="add_question">Add Question</string>
+    <string name="edit_question">Update Question</string>
 </resources>

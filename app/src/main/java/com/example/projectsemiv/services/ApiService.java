@@ -1,6 +1,7 @@
 package com.example.projectsemiv.services;
 
-import com.example.projectsemiv.dto.ChangPasswordDto;
+import com.example.projectsemiv.entity.ChangPasswordVm;
+import com.example.projectsemiv.entity.QuestionVm;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.entity.CategoryExam;
 import com.example.projectsemiv.entity.Question;
@@ -63,7 +64,7 @@ public interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("account/updatePasswordByUsername")
-    Call<String> updatePasswordByUsername(@Body ChangPasswordDto entity);
+    Call<String> updatePasswordByUsername(@Body ChangPasswordVm entity);
 
     @Headers("Content-Type: application/json")
     @PUT("account/editAccount")
@@ -74,7 +75,7 @@ public interface ApiService {
 
     //Question
     @GET("question")
-    Call<List<Question>> getAllQuestion(@Query("keySearch") String keySearch);
+    Call<List<QuestionVm>> getAllQuestion(@Query("keySearch") String keySearch);
 
     @GET("question/getById/{id}")
     Call<Question> getQuestionById(@Path("id") int id);

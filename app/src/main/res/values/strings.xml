@@ -95,4 +95,9 @@
     <string name="upload_image_false">Upload ảnh thất bại</string>
     <string name="please_wait">Đang xử lý...</string>
     <string name="no_data">Không có dữ liệu</string>
+    <string name="category_exam_name">Môn:</string>
+    <string name="question_name">Câu hỏi:</string>
+    <string name="add_question">Thêm mới câu hỏi</string>
+    <string name="edit_question">Cập nhật câu hỏi</string>
+
 </resources>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.ManagerAccountFragment">
+    tools:context=".fragment.ManagerQuestionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/noDataAcc"
+            android:id="@+id/noDataQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/listViewAccount"
+            android:id="@+id/listViewQuestion"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>

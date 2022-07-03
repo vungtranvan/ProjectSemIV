@@ -18,20 +18,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.projectsemiv.LoginActivity;
 import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
-import com.example.projectsemiv.RegisterActivity;
-import com.example.projectsemiv.activity.AddAccountActivity;
-import com.example.projectsemiv.activity.UpdateAccountActivity;
-import com.example.projectsemiv.adapter.AccountAdapter;
-import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.activity.AddQuestionActivity;
+import com.example.projectsemiv.activity.UpdateQuestionActivity;
+import com.example.projectsemiv.adapter.QuestionAdapter;
+import com.example.projectsemiv.entity.QuestionVm;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.services.ApiService;
 
@@ -42,22 +39,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ManagerAccountFragment extends Fragment {
 
-    private List<Account> mListAccount;
+public class ManagerQuestionFragment extends Fragment {
+
+    private List<QuestionVm> mListQuestion;
     private ProgressDialog mProgressDialog;
     private TextView noData;
     private SessionManager sessionManager;
 
-    public ManagerAccountFragment() {
+    public ManagerQuestionFragment() {
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.manager_account_nav);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.manager_question_nav);
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_manager_account, container, false);
+        return inflater.inflate(R.layout.fragment_manager_question, container, false);
     }
 
     @Override
@@ -66,8 +65,8 @@ public class ManagerAccountFragment extends Fragment {
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
         sessionManager = new SessionManager(getContext());
-        noData = getActivity().findViewById(R.id.noDataAcc);
-        getListAccount(null);
+        noData = getActivity().findViewById(R.id.noDataQuestion);
+        getListQuestion(null);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class ManagerAccountFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                getListAccount(s);
+                getListQuestion(s);
                 return false;
             }
 
@@ -90,7 +89,7 @@ public class ManagerAccountFragment extends Fragment {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                getListAccount(null);
+                getListQuestion(null);
                 return false;
             }
         });
@@ -102,7 +101,7 @@ public class ManagerAccountFragment extends Fragment {
         int idMenu = item.getItemId();
         switch (idMenu) {
             case R.id.menuAddNewData:
-                Intent intent = new Intent(getActivity(), AddAccountActivity.class);
+                Intent intent = new Intent(getActivity(), AddQuestionActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -118,15 +117,15 @@ public class ManagerAccountFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Account account = mListAccount.get(info.position);
+        QuestionVm question = mListQuestion.get(info.position);
         switch (item.getItemId()) {
             case R.id.menuUpdate:
-                Intent intent = new Intent(getActivity(), UpdateAccountActivity.class);
-                intent.putExtra("idAcc", account.getId());
+                Intent intent = new Intent(getActivity(), UpdateQuestionActivity.class);
+                intent.putExtra("idQ", question.getId());
                 startActivity(intent);
                 break;
             case R.id.menuDelete:
-                dialogConfirm(account.getId());
+                dialogConfirm(question.getId());
                 break;
         }
         return super.onContextItemSelected(item);
@@ -152,23 +151,14 @@ public class ManagerAccountFragment extends Fragment {
     }
 
     private void deleteAccount(int id) {
-        if (id == sessionManager.getUserIdInSession()){
-            Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_logged_error), Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (id == 1) {
-            Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_admin_error), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         mProgressDialog.show();
-        ApiService.apiService.deleteAccountById(id).enqueue(new Callback<String>() {
+        ApiService.apiService.deleteQuestionById(id).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 boolean bl = Boolean.parseBoolean(response.body());
                 if (bl) {
                     Toast.makeText(getContext(), getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
-                    getListAccount(null);
+                    getListQuestion(null);
                 } else {
                     mProgressDialog.dismiss();
                     Toast.makeText(getContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
@@ -183,29 +173,29 @@ public class ManagerAccountFragment extends Fragment {
         });
     }
 
-    private void getListAccount(String keyword) {
+    private void getListQuestion(String keyword) {
         mProgressDialog.show();
-        ApiService.apiService.getAllAccount(keyword).enqueue(new Callback<List<Account>>() {
+        ApiService.apiService.getAllQuestion(keyword).enqueue(new Callback<List<QuestionVm>>() {
             @Override
-            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
-                mListAccount = response.body();
+            public void onResponse(Call<List<QuestionVm>> call, Response<List<QuestionVm>> response) {
+                mListQuestion = response.body();
 
-                if (mListAccount == null || mListAccount.size() == 0) {
-                    mListAccount = new ArrayList<>();
+                if (mListQuestion == null || mListQuestion.size() == 0) {
+                    mListQuestion = new ArrayList<>();
                     noData.setVisibility(View.VISIBLE);
                 }else{
                     noData.setVisibility(View.GONE);
                 }
 
-                ListView listView = getActivity().findViewById(R.id.listViewAccount);
-                AccountAdapter adapter = new AccountAdapter(getContext(), mListAccount);
+                ListView listView = getActivity().findViewById(R.id.listViewQuestion);
+                QuestionAdapter adapter = new QuestionAdapter(getContext(), mListQuestion);
                 listView.setAdapter(adapter);
                 registerForContextMenu(listView);
                 mProgressDialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<List<Account>> call, Throwable t) {
+            public void onFailure(Call<List<QuestionVm>> call, Throwable t) {
                 mProgressDialog.dismiss();
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
@@ -215,6 +205,6 @@ public class ManagerAccountFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getListAccount(null);
+        getListQuestion(null);
     }
 }

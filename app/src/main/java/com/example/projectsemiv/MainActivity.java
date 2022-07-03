@@ -15,17 +15,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
 import com.example.projectsemiv.fragment.ManagerAccountFragment;
-import com.example.projectsemiv.fragment.MathFragment;
+import com.example.projectsemiv.fragment.ManagerQuestionFragment;
 import com.example.projectsemiv.helper.SessionManager;
-import com.example.projectsemiv.slide.ScreenSlideActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -35,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int Fragment_Home = 0;
-    private static final int Fragment_Math = 1;
+    private static final int Fragment_Manager_Question = 1;
     private static final int Fragment_Manager_Account = 2;
     private static final int Fragment_History = 3;
     private int mCurrentFragment = Fragment_Home;
@@ -101,9 +98,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.manager_question_nav:
-                if (mCurrentFragment != Fragment_Math) {
-                    replaceFragment(new MathFragment());
-                    mCurrentFragment = Fragment_Math;
+                if (mCurrentFragment != Fragment_Manager_Question) {
+                    replaceFragment(new ManagerQuestionFragment());
+                    mCurrentFragment = Fragment_Manager_Question;
                 }
                 break;
             case R.id.manager_account_nav:

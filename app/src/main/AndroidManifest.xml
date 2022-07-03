@@ -18,6 +18,12 @@
         android:theme="@style/Theme.ProjectSemIV"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.UpdateQuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.UpdateAccountActivity"
             android:exported="false" />
         <activity

@@ -1,11 +1,11 @@
-package com.example.projectsemiv.dto;
+package com.example.projectsemiv.entity;
 
-public class ChangPasswordDto {
+public class ChangPasswordVm {
     private String userName;
     private String password;
     private String confirmPassword;
 
-    public ChangPasswordDto() {
+    public ChangPasswordVm() {
     }
 
     public String getUserName() {
