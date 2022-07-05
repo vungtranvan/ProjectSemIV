@@ -82,7 +82,7 @@ public class AddAccountActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateHelper.notEmpty(txtUserName, validateHelper.MIN_LENGTH_DEFAULT, validateHelper.MAX_LENGTH_DEFAULT) |
+                if (!validateHelper.notEmpty(txtUserName, 2, validateHelper.MAX_LENGTH_DEFAULT) |
                         !validateHelper.isPassword(txtPassword, 4, 12) |
                         !validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, 50) |
                         !validateHelper.isEmail(txtEmail) |
@@ -286,7 +286,7 @@ public class AddAccountActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtUserName, validateHelper.MIN_LENGTH_DEFAULT, validateHelper.MAX_LENGTH_DEFAULT);
+                validateHelper.notEmpty(txtUserName, 2, validateHelper.MAX_LENGTH_DEFAULT);
             }
 
             @Override

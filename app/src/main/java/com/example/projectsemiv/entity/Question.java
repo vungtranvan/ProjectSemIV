@@ -2,8 +2,10 @@ package com.example.projectsemiv.entity;
 
 public class Question {
 
-    private Integer id;
+    private int id;
     private String name;
+    private int categoryExamId;
+    private String categoryExamName;
     private String answerA;
     private String answerB;
     private String answerC;
@@ -14,21 +16,15 @@ public class Question {
     public Question() {
     }
 
-    public Question(String name, String answerA, String answerB, String answerC, String answerD, String answerCorrect, String image) {
-        this.name = name;
-        this.answerA = answerA;
-        this.answerB = answerB;
-        this.answerC = answerC;
-        this.answerD = answerD;
-        this.answerCorrect = answerCorrect;
-        this.image = image;
+    public Question(int _d) {
+        this.id = id;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,6 +34,22 @@ public class Question {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCategoryExamId() {
+        return categoryExamId;
+    }
+
+    public void setCategoryExamId(int categoryExamId) {
+        this.categoryExamId = categoryExamId;
+    }
+
+    public String getCategoryExamName() {
+        return categoryExamName;
+    }
+
+    public void setCategoryExamName(String categoryExamName) {
+        this.categoryExamName = categoryExamName;
     }
 
     public String getAnswerA() {

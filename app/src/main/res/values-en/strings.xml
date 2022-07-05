@@ -99,4 +99,11 @@
     <string name="user_name_create">Name user created:</string>
     <string name="total_mark_of_history">Total Mark:</string>
     <string name="code">Id:</string>
+    <string name="name_question">Name</string>
+    <string name="content_answerA">Content answer A</string>
+    <string name="content_answerB">Content answer B</string>
+    <string name="content_answerC">Content answer C</string>
+    <string name="content_answerD">Content answer D</string>
+    <string name="answer_correct">Answer Correct</string>
+    <string name="question_category">Category</string>
 </resources>

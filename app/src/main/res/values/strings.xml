@@ -105,5 +105,12 @@
     <string name="user_name_create">Tên người tạo:</string>
     <string name="total_mark_of_history">Tổng điểm:</string>
     <string name="code">Mã lịch sử thi:</string>
+    <string name="name_question">Tên câu hỏi</string>
+    <string name="content_answerA">Nội dung đáp án A</string>
+    <string name="content_answerB">Nội dung đáp án B</string>
+    <string name="content_answerC">Nội dung đáp án C</string>
+    <string name="content_answerD">Nội dung đáp án D</string>
+    <string name="answer_correct">Đáp án đúng</string>
+    <string name="question_category">Môn</string>
 
 </resources>

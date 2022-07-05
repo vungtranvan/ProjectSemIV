@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class ValidateHelper {
 
-    public final int MIN_LENGTH_DEFAULT = 2;
+    public final int MIN_LENGTH_DEFAULT = 1;
     public final int MAX_LENGTH_DEFAULT = 25;
 
     private static final Pattern PASSWORD_PATTERN =
