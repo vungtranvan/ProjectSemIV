@@ -1,6 +1,8 @@
 package com.example.projectsemiv.services;
 
 import com.example.projectsemiv.entity.ChangPasswordVm;
+import com.example.projectsemiv.entity.HistoryVm;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 import com.example.projectsemiv.entity.QuestionVm;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.entity.CategoryExam;
@@ -82,12 +84,25 @@ public interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("question/addQuestion")
-    Call<String> addQuestion(@Body Question entity);
+    Call<String> addQuestion(@Body String strData);
 
     @Headers("Content-Type: application/json")
     @PUT("question/editQuestion")
-    Call<String> editQuestion(@Body Question entity);
+    Call<String> editQuestion(@Body String strData);
 
     @DELETE("question/deleteQuestion/{id}")
     Call<String> deleteQuestionById(@Path("id") int id);
+
+    // History
+    @GET("history/getAllByAdmin")
+    Call<List<HistoryVm>> getAllHistoryByAdmin(@Query("keySearch") String keySearch);
+
+    @GET("history/getAllByMember/{userId}/{categoryExamId}")
+    Call<List<HistoryVm>> getAllByMember(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
+
+    @GET("history/getDetail/{id}")
+    Call<List<QuestionHistoryVm>> getDetail(@Path("id") int id);
+
+    @POST("history/addHistory/{userId}/{categoryExamId}")
+    Call<String> addHistory(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
 }

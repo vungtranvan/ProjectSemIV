@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
 import com.example.projectsemiv.fragment.ManagerAccountFragment;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtUserNameLogged = headerView.findViewById(R.id.txtUserNameLogged);
         txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_NAME_DISPLAY_USER));
         String imgAccLogged = userInfo.get(SessionManager.KEY_USER_IMAGE);
-        if (imgAccLogged != null){
+        if (imgAccLogged != null) {
             Glide.with(MainActivity.this).load(imgAccLogged).into((CircleImageView) headerView.findViewById(R.id.imgUserLogged));
         }
     }
@@ -114,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     replaceFragment(new HistoryFragment());
                     mCurrentFragment = Fragment_History;
                 }
+                break;
+            case R.id.nav_my_profile:
+                Intent intent = new Intent(MainActivity.this, UpdateAccountActivity.class);
+                intent.putExtra("idAcc", sessionManager.getUserIdInSession());
+                startActivity(intent);
                 break;
             case R.id.nav_logout:
                 dialogLogout();

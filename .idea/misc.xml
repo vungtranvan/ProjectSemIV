@@ -32,6 +32,7 @@
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/content_demo.xml" value="0.16875" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/favoritefragment.xml" value="0.23550724637681159" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/fragment_first.xml" value="0.16875" />
+        <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/fragment_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/fragment_home.xml" value="0.24230072463768115" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/fragment_manager_account.xml" value="0.24230072463768115" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/fragment_manager_question.xml" value="0.23007246376811594" />
@@ -43,12 +44,14 @@
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_account_list.xml" value="0.264" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_gridview.xml" value="0.25416666666666665" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_gridview_list_answer.xml" value="0.2" />
+        <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_history_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_loading.xml" value="0.1" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/item_question_list.xml" value="0.23007246376811594" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/layout_header_navigation.xml" value="0.2" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/layout/sub_menu.xml" value="0.17447916666666666" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/menu/menu_navigation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/menu/menu_of_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/menu/sub_menu.xml" value="0.17447916666666666" />
         <entry key="..\:/Hoc-Lap-Trinh/Thuc-Hanh-Lap-Trinh/HocTap/SemIV_Android/ProjectSemIV/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1775" />
       </map>

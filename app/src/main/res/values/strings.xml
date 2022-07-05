@@ -3,7 +3,7 @@
     <string name="info_user_default">Trần Văn Vững</string>
     <string name="home_nav">Trang Chủ</string>
     <string name="manager_question_nav">Quản Lý Câu Hỏi</string>
-    <string name="history_nav">Lịch Sử</string>
+    <string name="history_nav">Quản Lý Lịch Sử</string>
     <string name="manager_account_nav">Quản Lý Tài Khoản</string>
     <string name="account_nav">Tài Khoản</string>
     <string name="change_pass_nav">Đổi Mật Khẩu</string>
@@ -99,5 +99,11 @@
     <string name="question_name">Câu hỏi:</string>
     <string name="add_question">Thêm mới câu hỏi</string>
     <string name="edit_question">Cập nhật câu hỏi</string>
+    <string name="status">Trạng thái:</string>
+    <string name="status_tested">Đã thi</string>
+    <string name="status_not_tested">Chưa thi</string>
+    <string name="user_name_create">Tên người tạo:</string>
+    <string name="total_mark_of_history">Tổng điểm:</string>
+    <string name="code">Mã lịch sử thi:</string>
 
 </resources>
