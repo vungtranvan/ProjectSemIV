@@ -132,6 +132,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
     }
 
     private void loadDetailData() {
+        mProgressDialog.show();
         ApiService.apiService.getAccountById(idAcc).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
@@ -158,8 +159,9 @@ public class UpdateAccountActivity extends AppCompatActivity {
                     } else {
                         rdTypeMember.setChecked(true);
                     }
-
+                    mProgressDialog.dismiss();
                 } else {
+                    mProgressDialog.dismiss();
                     finish();
                 }
             }

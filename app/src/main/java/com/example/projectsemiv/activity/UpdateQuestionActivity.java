@@ -48,6 +48,7 @@ import retrofit2.Response;
 
 public class UpdateQuestionActivity extends AppCompatActivity {
 
+    private String arrAnswer[];
     private List<CategoryExam> lstCategory;
     private ValidateHelper validateHelper;
     private ProgressDialog mProgressDialog;
@@ -71,7 +72,6 @@ public class UpdateQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_question);
         initConfig();
         setDataSpinner();
-        loadDetailData();
 
         eventValidateInput();
 
@@ -115,6 +115,7 @@ public class UpdateQuestionActivity extends AppCompatActivity {
 
     private void initConfig() {
         idQ = getIntent().getExtras().getInt("idQ");
+        arrAnswer = getResources().getStringArray(R.array.lstAnswer);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
 
@@ -136,7 +137,7 @@ public class UpdateQuestionActivity extends AppCompatActivity {
     }
 
     private void setDataSpinner() {
-
+        mProgressDialog.show();
         ApiService.apiService.getAllCategoryExam().enqueue(new Callback<List<CategoryExam>>() {
             @Override
             public void onResponse(Call<List<CategoryExam>> call, Response<List<CategoryExam>> response) {
@@ -145,6 +146,7 @@ public class UpdateQuestionActivity extends AppCompatActivity {
                 if (lstCategory == null || lstCategory.size() == 0) {
                     lstCategory = new ArrayList<>();
                 }
+                loadDetailData();
 
                 ArrayAdapter categoryAdapter = new ArrayAdapter(UpdateQuestionActivity.this, R.layout.spinner, lstCategory);
                 spCategoryExam.setAdapter(categoryAdapter);
@@ -159,6 +161,8 @@ public class UpdateQuestionActivity extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
+
+
             }
 
             @Override
@@ -186,7 +190,26 @@ public class UpdateQuestionActivity extends AppCompatActivity {
                     txtAnswerC.getEditText().setText(question.getAnswerC());
                     txtAnswerD.getEditText().setText(question.getAnswerD());
 
+                    int pos1 = 0;
+                    for (CategoryExam c : lstCategory) {
+                        if (c.getId() == categoryExamId) {
+                            break;
+                        }
+                        pos1++;
+                    }
+                    spCategoryExam.setSelection(pos1);
+
+                    int pos2 = 0;
+                    for (int i = 0; i < arrAnswer.length; i++) {
+                        if (arrAnswer[i].equals(question.getAnswerCorrect())) {
+                            pos2 = i;
+                            break;
+                        }
+                    }
+                    spAnswerCorrect.setSelection(pos2);
+                    mProgressDialog.dismiss();
                 } else {
+                    mProgressDialog.dismiss();
                     finish();
                 }
             }
