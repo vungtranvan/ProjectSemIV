@@ -65,8 +65,8 @@ public interface ApiService {
     Call<String> registerAccount(@Body String strData);
 
     @Headers("Content-Type: application/json")
-    @POST("account/updatePasswordByUsername")
-    Call<String> updatePasswordByUsername(@Body ChangPasswordVm entity);
+    @PUT("account/updatePasswordByUserId")
+    Call<String> updatePasswordByUserId(@Body ChangPasswordVm entity);
 
     @Headers("Content-Type: application/json")
     @PUT("account/editAccount")
@@ -98,10 +98,10 @@ public interface ApiService {
     Call<List<HistoryVm>> getAllHistoryByAdmin(@Query("keySearch") String keySearch);
 
     @GET("history/getAllByMember/{userId}/{categoryExamId}")
-    Call<List<HistoryVm>> getAllByMember(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
+    Call<List<HistoryVm>> getAllHistoryByMember(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
 
     @GET("history/getDetail/{id}")
-    Call<List<QuestionHistoryVm>> getDetail(@Path("id") int id);
+    Call<List<QuestionHistoryVm>> getHistoryDetail(@Path("id") int id);
 
     @POST("history/addHistory/{userId}/{categoryExamId}")
     Call<String> addHistory(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);

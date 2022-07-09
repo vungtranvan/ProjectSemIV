@@ -42,22 +42,22 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        gvExam = (GridView) getActivity().findViewById(R.id.gvExam);
-
-        // fake data
-        arr_exam = new FakeData().getExamFake();
-
-        examAdapter = new CategoryExamAdapter(getActivity(), arr_exam);
-        gvExam.setAdapter(examAdapter);
-        gvExam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ScreenSlideActivity.class);
-                intent.putExtra("categoryExamId", i + 1);
-                intent.putExtra("subject", "math");
-                intent.putExtra("test", "yes");
-                startActivity(intent);
-            }
-        });
+//        gvExam = (GridView) getActivity().findViewById(R.id.gvExam);
+//
+//        // fake data
+//        arr_exam = new FakeData().getExamFake();
+//
+//        examAdapter = new CategoryExamAdapter(getActivity(), arr_exam);
+//        gvExam.setAdapter(examAdapter);
+//        gvExam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(getActivity(), ScreenSlideActivity.class);
+//                intent.putExtra("categoryExamId", i + 1);
+//                intent.putExtra("subject", "math");
+//                intent.putExtra("test", "yes");
+//                startActivity(intent);
+//            }
+//        });
     }
 }

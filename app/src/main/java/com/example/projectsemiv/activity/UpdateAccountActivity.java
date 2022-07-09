@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -47,10 +48,13 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private String userName;
     private String passwordUser;
     private String imgUser;
+    private boolean typeUser;
+    private boolean typeUpdate;
 
     private SessionManager sessionManager;
     private TextInputLayout txtName, txtEmail, txtAddress, txtPassword;
     private RadioButton rdMale, rdFemale, rdTypeAdmin, rdTypeMember;
+    private RadioGroup rdTypeAccount;
     private ValidateHelper validateHelper;
     private ProgressDialog mProgressDialog;
 
@@ -109,6 +113,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
     private void initConfig() {
         idAcc = getIntent().getExtras().getInt("idAcc");
+        typeUpdate = getIntent().getExtras().getBoolean("typeUpdate");
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
 
@@ -123,6 +128,14 @@ public class UpdateAccountActivity extends AppCompatActivity {
         rdFemale = findViewById(R.id.rdFemale);
         rdTypeAdmin = findViewById(R.id.rdTypeAdmin);
         rdTypeMember = findViewById(R.id.rdTypeMember);
+        rdTypeAccount = findViewById(R.id.rdTypeAccount);
+
+        if (idAcc == 1 || typeUpdate) {
+            rdTypeAccount.setVisibility(View.GONE);
+            if (typeUpdate) {
+                txtPassword.setVisibility(View.GONE);
+            }
+        }
 
         try {
             MediaManager.init(this);
@@ -141,6 +154,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
                     userName = account.getUserName();
                     passwordUser = account.getPassword();
                     imgUser = account.getImage();
+                    typeUser = account.isIsAdmin();
+
                     if (imgUser != null) {
                         Glide.with(UpdateAccountActivity.this).load(imgUser).into(imageView);
                     }
@@ -159,6 +174,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                     } else {
                         rdTypeMember.setChecked(true);
                     }
+
                     mProgressDialog.dismiss();
                 } else {
                     mProgressDialog.dismiss();
@@ -262,7 +278,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         try {
             paramObject.put("_id", idAcc);
             paramObject.put("userName", userName);
-            if (txtPassword.getEditText().getText().toString().trim().length() == 0) {
+            if (txtPassword.getEditText().getText().toString().trim().length() == 0 || typeUpdate) {
                 paramObject.put("password", passwordUser);
             } else {
                 paramObject.put("password", txtPassword.getEditText().getText().toString().trim());
@@ -278,7 +294,13 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
             paramObject.put("address", txtAddress.getEditText().getText().toString().trim());
             paramObject.put("sex", rdMale.isChecked());
-            paramObject.put("isAdmin", rdTypeAdmin.isChecked());
+
+            if (idAcc == 1 || typeUpdate) {
+                paramObject.put("isAdmin", typeUser);
+            } else {
+                paramObject.put("isAdmin", rdTypeAdmin.isChecked());
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

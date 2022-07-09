@@ -123,6 +123,7 @@ public class ManagerAccountFragment extends Fragment {
             case R.id.menuUpdate:
                 Intent intent = new Intent(getActivity(), UpdateAccountActivity.class);
                 intent.putExtra("idAcc", account.getId());
+                intent.putExtra("typeUpdate", false);
                 startActivity(intent);
                 break;
             case R.id.menuDelete:

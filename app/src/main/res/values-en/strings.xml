@@ -6,6 +6,7 @@
     <string name="history_nav">History</string>
     <string name="account_nav">Account</string>
     <string name="manager_account_nav">Manager Account</string>
+    <string name="manager_nav">Manager</string>
     <string name="change_pass_nav">Chang password</string>
     <string name="my_profile_nav">My profile</string>
     <string name="login">LOGIN</string>
@@ -106,4 +107,7 @@
     <string name="content_answerD">Content answer D</string>
     <string name="answer_correct">Answer Correct</string>
     <string name="question_category">Category</string>
+    <string name="math_nav">Math</string>
+    <string name="english_nav">English</string>
+    <string name="literature_nav">Literature</string>
 </resources>

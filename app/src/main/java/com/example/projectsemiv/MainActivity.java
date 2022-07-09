@@ -19,10 +19,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectsemiv.activity.UpdateAccountActivity;
+import com.example.projectsemiv.fragment.EnglishFragment;
 import com.example.projectsemiv.fragment.HistoryFragment;
 import com.example.projectsemiv.fragment.HomeFragment;
+import com.example.projectsemiv.fragment.LiteratureFragment;
 import com.example.projectsemiv.fragment.ManagerAccountFragment;
 import com.example.projectsemiv.fragment.ManagerQuestionFragment;
+import com.example.projectsemiv.fragment.MathFragment;
 import com.example.projectsemiv.helper.SessionManager;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,9 +36,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int Fragment_Home = 0;
-    private static final int Fragment_Manager_Question = 1;
-    private static final int Fragment_Manager_Account = 2;
-    private static final int Fragment_History = 3;
+    private static final int Fragment_Math = 1;
+    private static final int Fragment_English = 2;
+    private static final int Fragment_Literature = 3;
+    private static final int Fragment_Manager_Question = 4;
+    private static final int Fragment_Manager_Account = 5;
+    private static final int Fragment_History = 6;
     private int mCurrentFragment = Fragment_Home;
 
     private DrawerLayout mdrawerLayout;
@@ -98,6 +104,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mCurrentFragment = Fragment_Home;
                 }
                 break;
+            case R.id.math_nav:
+                if (mCurrentFragment != Fragment_Math) {
+                    replaceFragment(new MathFragment());
+                    mCurrentFragment = Fragment_Math;
+                }
+                break;
+            case R.id.english_nav:
+                if (mCurrentFragment != Fragment_English) {
+                    replaceFragment(new EnglishFragment());
+                    mCurrentFragment = Fragment_English;
+                }
+                break;
+            case R.id.literature_nav:
+                if (mCurrentFragment != Fragment_Literature) {
+                    replaceFragment(new LiteratureFragment());
+                    mCurrentFragment = Fragment_Literature;
+                }
+                break;
             case R.id.manager_question_nav:
                 if (mCurrentFragment != Fragment_Manager_Question) {
                     replaceFragment(new ManagerQuestionFragment());
@@ -119,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_my_profile:
                 Intent intent = new Intent(MainActivity.this, UpdateAccountActivity.class);
                 intent.putExtra("idAcc", sessionManager.getUserIdInSession());
+                intent.putExtra("typeUpdate", true);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
