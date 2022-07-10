@@ -1,6 +1,7 @@
 package com.example.projectsemiv.services;
 
 import com.example.projectsemiv.entity.ChangPasswordVm;
+import com.example.projectsemiv.entity.HistoryUpdateVm;
 import com.example.projectsemiv.entity.HistoryVm;
 import com.example.projectsemiv.entity.QuestionHistoryVm;
 import com.example.projectsemiv.entity.QuestionVm;
@@ -105,4 +106,8 @@ public interface ApiService {
 
     @POST("history/addHistory/{userId}/{categoryExamId}")
     Call<String> addHistory(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
+
+    @Headers("Content-Type: application/json")
+    @PUT("history/editHistory")
+    Call<String> editHistory(@Body HistoryUpdateVm entity);
 }

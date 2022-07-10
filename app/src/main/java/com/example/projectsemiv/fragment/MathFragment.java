@@ -1,6 +1,7 @@
 package com.example.projectsemiv.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,11 @@ import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.adapter.SubjectAdapter;
 import com.example.projectsemiv.entity.HistoryVm;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.services.ApiService;
+import com.example.projectsemiv.slide.ScreenSlideActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,11 +126,8 @@ public class MathFragment extends Fragment {
                 gvExamMath.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                        Intent intent = new Intent(getActivity(), ScreenSlideActivity.class);
-//                        intent.putExtra("categoryExamId",  CommonData.ID_MATH);
-//                        intent.putExtra("subject", "math");
-//                        intent.putExtra("test", "yes");
-//                        startActivity(intent);
+                        HistoryVm historyVm = mListHistory.get(position);
+                        loadDataHistoryDetail(historyVm.getId(), historyVm.isStatus());
                     }
                 });
                 mProgressDialog.dismiss();
@@ -136,6 +136,30 @@ public class MathFragment extends Fragment {
             @Override
             public void onFailure(Call<List<HistoryVm>> call, Throwable t) {
                 mProgressDialog.dismiss();
+                Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadDataHistoryDetail(int id, boolean status) {
+        ApiService.apiService.getHistoryDetail(id).enqueue(new Callback<List<QuestionHistoryVm>>() {
+            @Override
+            public void onResponse(Call<List<QuestionHistoryVm>> call, Response<List<QuestionHistoryVm>> response) {
+                List<QuestionHistoryVm> data = (ArrayList<QuestionHistoryVm>) response.body();
+
+                if (data == null) {
+                    data = new ArrayList<>();
+                }
+
+                Intent intent = new Intent(getActivity(), ScreenSlideActivity.class);
+                intent.putExtra("_idH", id);
+                intent.putExtra("test", status);
+                intent.putExtra("arr_Ques", (ArrayList) data);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionHistoryVm>> call, Throwable t) {
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });

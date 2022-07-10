@@ -114,9 +114,7 @@
     <string name="answer_correct">Đáp án đúng</string>
     <string name="question_category">Môn</string>
     <string name="math_nav">Toán</string>
-    <string name="english_nav">Văn</string>
-    <string name="literature_nav">Anh</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="english_nav">Anh</string>
+    <string name="literature_nav">Văn</string>
 
 </resources>

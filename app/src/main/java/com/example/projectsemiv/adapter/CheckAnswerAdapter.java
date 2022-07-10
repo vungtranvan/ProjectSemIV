@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.projectsemiv.R;
-import com.example.projectsemiv.entity.Question01;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class CheckAnswerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Question01 data = (Question01) getItem(position);
+        QuestionHistoryVm data = (QuestionHistoryVm) getItem(position);
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -54,7 +54,7 @@ public class CheckAnswerAdapter extends BaseAdapter {
         int i = position + 1;
 
         holder.tvNumAns.setText(mContext.getResources().getString(R.string.question_no) + " " + i + ": ");
-        holder.tvYourAns.setText(data.getTraloi());
+        holder.tvYourAns.setText(data.getAnswerChoice());
         return convertView;
     }
 

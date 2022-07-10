@@ -18,21 +18,28 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.adapter.CheckAnswerAdapter;
-import com.example.projectsemiv.entity.FakeData;
-import com.example.projectsemiv.entity.Question01;
+import com.example.projectsemiv.entity.HistoryUpdateVm;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
+import com.example.projectsemiv.helper.CommonData;
+import com.example.projectsemiv.services.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ScreenSlideActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 15;
+    private static final int NUM_PAGES = CommonData.PAGE_SIZE_TEST;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -47,12 +54,11 @@ public class ScreenSlideActivity extends FragmentActivity {
 
     TextView tvKiemtra, tvTimer, tvXemDiem, tv_back_question, tv_current_question, tv_total_question, tv_next_question;
     public int checkAns = 0;
-    List<Question01> arr_Ques;
+    List<QuestionHistoryVm> arr_Ques;
     CounterClass timer;
-    String subject;
-    int num_exam;
-    int totalTimer = 10;
-    String test = "";
+    int _idH;
+    int totalTimer = CommonData.TIME_TOTAL_TEST;
+    boolean test = false;
     Dialog dialogCheckAnswer;
 
     @Override
@@ -67,9 +73,8 @@ public class ScreenSlideActivity extends FragmentActivity {
         mPager.setPageTransformer(true, new DepthPageTransformer());
 
         Intent intent = getIntent();
-        subject = intent.getStringExtra("subject");
-        num_exam = intent.getIntExtra("categoryExamId", 0);
-        test = intent.getStringExtra("test");
+        test = intent.getBooleanExtra("test", false);
+        _idH = intent.getIntExtra("_idH", 0);
 
         timer = new CounterClass(totalTimer * 60 * 1000, 1000);
         tvKiemtra = (TextView) findViewById(R.id.tvKiemTra);
@@ -81,12 +86,14 @@ public class ScreenSlideActivity extends FragmentActivity {
         tv_total_question = (TextView) findViewById(R.id.tv_total_question);
         tv_next_question = (TextView) findViewById(R.id.tv_next_question);
 
-        if (test.equals("yes")) {
+        arr_Ques = (ArrayList<QuestionHistoryVm>) intent.getExtras().getSerializable("arr_Ques");
+
+        if (!test) {
             // Fake Data
-            arr_Ques = new FakeData().getQuestionFake();
+            //arr_Ques = new FakeData().getQuestionFake();
             timer.start();
         } else {
-            arr_Ques = (ArrayList<Question01>) intent.getExtras().getSerializable("arr_Ques");
+            //arr_Ques = (ArrayList<Question01>) intent.getExtras().getSerializable("arr_Ques");
             timer.cancel();
             tvTimer.setText("00:00");
             checkAns = 1;
@@ -136,6 +143,32 @@ public class ScreenSlideActivity extends FragmentActivity {
         });
     }
 
+    private void submitDataExam() {
+        int numTrue = 0;
+        for (int i = 0; i < arr_Ques.size(); i++) {
+            if (arr_Ques.get(i).getAnswerCorrect().equals(arr_Ques.get(i).getAnswerChoice()) == true) {
+                numTrue++;
+            }
+        }
+
+        HistoryUpdateVm historyUpdateVm = new HistoryUpdateVm();
+        historyUpdateVm.setId(_idH);
+        historyUpdateVm.setCorrectMark(numTrue);
+        historyUpdateVm.setTotalMark(arr_Ques.size());
+        historyUpdateVm.setItems((List) arr_Ques);
+
+        ApiService.apiService.editHistory(historyUpdateVm).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(ScreenSlideActivity.this, getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void changPageCurrent() {
         setTextShowPageCurrent();
         if (mPager.getCurrentItem() + 1 == NUM_PAGES) {
@@ -160,7 +193,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         tv_current_question.setText("" + (mPager.getCurrentItem() + 1));
     }
 
-    public List<Question01> getData() {
+    public List<QuestionHistoryVm> getData() {
         return arr_Ques;
     }
 
@@ -228,6 +261,9 @@ public class ScreenSlideActivity extends FragmentActivity {
                 timer.cancel();
                 result();
                 dismissDialogCheckAnswer();
+                if (!test) {
+                    submitDataExam();
+                }
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -246,6 +282,9 @@ public class ScreenSlideActivity extends FragmentActivity {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                if (!test) {
+                    submitDataExam();
+                }
                 timer.cancel();
                 finish();
             }

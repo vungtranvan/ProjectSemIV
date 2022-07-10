@@ -11,17 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projectsemiv.R;
-import com.example.projectsemiv.entity.Question01;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 
 import java.util.ArrayList;
 
 public class TestDoneActivity extends AppCompatActivity {
 
-    ArrayList<Question01> arr_QuesBegin = new ArrayList<Question01>();
+    ArrayList<QuestionHistoryVm> arr_QuesBegin = new ArrayList<QuestionHistoryVm>();
     int numNoAns = 0;
     int numTrue = 0;
     int numFalse = 0;
-
 
     TextView tvTrue, tvFalse, tvNotAns, tvTotalScore;
     Button btnAgain, btnExit;
@@ -32,7 +31,8 @@ public class TestDoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_done);
 
         final Intent intent = getIntent();
-        arr_QuesBegin = (ArrayList<Question01>) intent.getExtras().getSerializable("arr_Ques");
+        arr_QuesBegin = (ArrayList<QuestionHistoryVm>) intent.getExtras().getSerializable("arr_Ques");
+
         begin();
         checkResult();
         tvNotAns.setText("" + numNoAns);
@@ -68,7 +68,7 @@ public class TestDoneActivity extends AppCompatActivity {
                 finish();
                 Intent intent2 = new Intent(TestDoneActivity.this, ScreenSlideActivity.class);
                 intent2.putExtra("arr_Ques", arr_QuesBegin);
-                intent2.putExtra("test", "no");
+                intent2.putExtra("test", true);
                 startActivity(intent2);
             }
         });
@@ -85,9 +85,9 @@ public class TestDoneActivity extends AppCompatActivity {
 
     public void checkResult() {
         for (int i = 0; i < arr_QuesBegin.size(); i++) {
-            if (arr_QuesBegin.get(i).getTraloi().equals("") == true) {
+            if (arr_QuesBegin.get(i).getAnswerChoice() == null || arr_QuesBegin.get(i).getAnswerChoice().equals("") == true) {
                 numNoAns++;
-            } else if (arr_QuesBegin.get(i).getResult().equals(arr_QuesBegin.get(i).getTraloi()) == true) {
+            } else if (arr_QuesBegin.get(i).getAnswerCorrect().equals(arr_QuesBegin.get(i).getAnswerChoice()) == true) {
                 numTrue++;
             } else numFalse++;
         }

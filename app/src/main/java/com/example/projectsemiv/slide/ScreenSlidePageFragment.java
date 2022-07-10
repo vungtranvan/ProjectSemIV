@@ -14,8 +14,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.projectsemiv.R;
-import com.example.projectsemiv.entity.Question01;
+import com.example.projectsemiv.activity.UpdateAccountActivity;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class ScreenSlidePageFragment extends Fragment {
 
-    List<Question01> arr_Ques;
+    List<QuestionHistoryVm> arr_Ques;
     public static final String ARG_PAGE = "page";
     public static final String ARG_CHECK_ANSWER = "checkAnswer";
     public int mPageNumber;
@@ -56,7 +58,7 @@ public class ScreenSlidePageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        arr_Ques = new ArrayList<Question01>();
+        arr_Ques = new ArrayList<QuestionHistoryVm>();
         ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
         arr_Ques = slideActivity.getData();
         mPageNumber = getArguments().getInt(ARG_PAGE);
@@ -77,19 +79,22 @@ public class ScreenSlidePageFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         tvNum.setText(getString(R.string.question_no) + " " + (mPageNumber + 1));
 
-        Question01 question = this.getItem(mPageNumber);
-        tvQuestion.setText(question.getQuestion());
-        radA.setText(question.getAns_a());
-        radB.setText(question.getAns_b());
-        radC.setText(question.getAns_c());
-        radD.setText(question.getAns_d());
+        QuestionHistoryVm question = this.getItem(mPageNumber);
+        tvQuestion.setText(question.getName());
+        radA.setText(question.getAnswerA());
+        radB.setText(question.getAnswerB());
+        radC.setText(question.getAnswerC());
+        radD.setText(question.getAnswerD());
 
         if (question.getImage() != null && !question.getImage().equals("")) {
-            imgIcon.setImageResource(getResources().getIdentifier(question.getImage(), "drawable", "com.example.projectsemiv"));
+            imgIcon.setVisibility(View.VISIBLE);
+            Glide.with(ScreenSlidePageFragment.this).load(question.getImage()).into(imgIcon);
+        } else {
+            imgIcon.setVisibility(View.GONE);
         }
 
         if (checkAns != 0) {
-            this.getCheckAns(question.getResult());
+            this.getCheckAns(question.getAnswerCorrect());
             this.setBackgroundErrandCheckedRadio(question);
             radA.setClickable(false);
             radB.setClickable(false);
@@ -101,12 +106,12 @@ public class ScreenSlidePageFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 question.choiceID = checkedId;
-                question.setTraloi(getChoiceFromID(checkedId));
+                question.setAnswerChoice(getChoiceFromID(checkedId));
             }
         });
     }
 
-    public Question01 getItem(int position) {
+    public QuestionHistoryVm getItem(int position) {
         return arr_Ques.get(position);
     }
 
@@ -125,30 +130,30 @@ public class ScreenSlidePageFragment extends Fragment {
         }
     }
 
-    private void setBackgroundErrandCheckedRadio(Question01 question) {
-        if (question.getTraloi() != null && !question.getTraloi().equals("")) {
-            switch (question.getTraloi()) {
+    private void setBackgroundErrandCheckedRadio(QuestionHistoryVm question) {
+        if (question.getAnswerChoice() != null && !question.getAnswerChoice().equals("")) {
+            switch (question.getAnswerChoice()) {
                 case "A":
                     radA.setChecked(true);
-                    if (!question.getResult().equals("A")) {
+                    if (!question.getAnswerCorrect().equals("A")) {
                         radA.setBackgroundColor(Color.RED);
                     }
                     break;
                 case "B":
                     radB.setChecked(true);
-                    if (!question.getResult().equals("B")) {
+                    if (!question.getAnswerCorrect().equals("B")) {
                         radB.setBackgroundColor(Color.RED);
                     }
                     break;
                 case "C":
                     radC.setChecked(true);
-                    if (!question.getResult().equals("C")) {
+                    if (!question.getAnswerCorrect().equals("C")) {
                         radC.setBackgroundColor(Color.RED);
                     }
                     break;
                 case "D":
                     radD.setChecked(true);
-                    if (!question.getResult().equals("D")) {
+                    if (!question.getAnswerCorrect().equals("D")) {
                         radD.setBackgroundColor(Color.RED);
                     }
                     break;
