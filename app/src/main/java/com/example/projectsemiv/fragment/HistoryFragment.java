@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -23,8 +25,10 @@ import com.example.projectsemiv.R;
 import com.example.projectsemiv.activity.AddQuestionActivity;
 import com.example.projectsemiv.adapter.HistoryAdapter;
 import com.example.projectsemiv.entity.HistoryVm;
+import com.example.projectsemiv.entity.QuestionHistoryVm;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.services.ApiService;
+import com.example.projectsemiv.slide.ScreenSlideActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,16 +112,49 @@ public class HistoryFragment extends Fragment {
                     noData.setVisibility(View.GONE);
                 }
 
-                ListView listView = getActivity().findViewById(R.id.listViewHistory);
+                GridView gridViewH = getActivity().findViewById(R.id.listViewHistory);
                 HistoryAdapter adapter = new HistoryAdapter(getContext(), mListHistory);
-                listView.setAdapter(adapter);
-                registerForContextMenu(listView);
+                gridViewH.setAdapter(adapter);
+                gridViewH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        HistoryVm historyVm = mListHistory.get(position);
+                        if (historyVm.isStatus()) {
+                            loadDataHistoryDetail(historyVm.getId(), historyVm.isStatus());
+                        }
+
+                    }
+                });
                 mProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<List<HistoryVm>> call, Throwable t) {
                 mProgressDialog.dismiss();
+                Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadDataHistoryDetail(int id, boolean status) {
+        ApiService.apiService.getHistoryDetail(id).enqueue(new Callback<List<QuestionHistoryVm>>() {
+            @Override
+            public void onResponse(Call<List<QuestionHistoryVm>> call, Response<List<QuestionHistoryVm>> response) {
+                List<QuestionHistoryVm> data = (ArrayList<QuestionHistoryVm>) response.body();
+
+                if (data == null) {
+                    data = new ArrayList<>();
+                }
+
+                Intent intent = new Intent(getActivity(), ScreenSlideActivity.class);
+                intent.putExtra("_idH", id);
+                intent.putExtra("test", status);
+                intent.putExtra("arr_Ques", (ArrayList) data);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionHistoryVm>> call, Throwable t) {
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });

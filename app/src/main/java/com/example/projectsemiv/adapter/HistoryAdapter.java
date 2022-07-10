@@ -43,8 +43,9 @@ public class HistoryAdapter extends ArrayAdapter<HistoryVm> {
         tvNameAccCreateHistory.setText(historyVm.getAccountName());
         tvStatusHistory.setText(historyVm.isStatus() ? mCtx.getResources().getString(R.string.status_tested) : mCtx.getResources().getString(R.string.status_not_tested));
         if (historyVm.isStatus()) {
-            tvMarkHistory.setText(historyVm.getCorrectMark() + " / " + historyVm.getTotalMark());
+            tvMarkHistory.setText(historyVm.getCorrectMark() + "/" + historyVm.getTotalMark());
             title_tvMarkHistory.setVisibility(View.VISIBLE);
+            tvMarkHistory.setVisibility(View.VISIBLE);
         } else {
             tvMarkHistory.setVisibility(View.GONE);
             title_tvMarkHistory.setVisibility(View.GONE);
