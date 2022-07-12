@@ -122,5 +122,7 @@
     <string name="english_nav">Anh</string>
     <string name="literature_nav">Văn</string>
     <string name="password_new_must_be_other_password_old">Mật khẩu mới phải khác mật khẩu cũ</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="only_admin_account_can_be_updated">Chỉ có tài khoản admin mới được cập nhật</string>
 
 </resources>

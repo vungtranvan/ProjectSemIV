@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.activity.AddAccountActivity;
@@ -118,6 +119,10 @@ public class ManagerAccountFragment extends Fragment {
         Account account = mListAccount.get(info.position);
         switch (item.getItemId()) {
             case R.id.menuUpdate:
+                if (account.getId() == CommonData.ID_ADMIN_DEFAULT && sessionManager.getUserIdInSession() != CommonData.ID_ADMIN_DEFAULT) {
+                    Toast.makeText(getContext(), getResources().getString(R.string.only_admin_account_can_be_updated), Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 Intent intent = new Intent(getActivity(), UpdateAccountActivity.class);
                 intent.putExtra("idAcc", account.getId());
                 intent.putExtra("typeUpdate", false);
@@ -150,7 +155,7 @@ public class ManagerAccountFragment extends Fragment {
     }
 
     private void deleteAccount(int id) {
-        if (id == sessionManager.getUserIdInSession()){
+        if (id == sessionManager.getUserIdInSession()) {
             Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_logged_error), Toast.LENGTH_SHORT).show();
             return;
         }
@@ -191,7 +196,7 @@ public class ManagerAccountFragment extends Fragment {
                 if (mListAccount == null || mListAccount.size() == 0) {
                     mListAccount = new ArrayList<>();
                     noData.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     noData.setVisibility(View.GONE);
                 }
 

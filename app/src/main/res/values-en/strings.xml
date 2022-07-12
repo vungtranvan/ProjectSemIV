@@ -116,4 +116,7 @@
     <string name="english_nav">English</string>
     <string name="literature_nav">Literature</string>
     <string name="password_new_must_be_other_password_old">Password new must be other password old</string>
+    <string name="search">Search</string>
+    <string name="only_admin_account_can_be_updated">Only admin accounts can be updated</string>
+
 </resources>

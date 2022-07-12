@@ -170,12 +170,15 @@ public class UpdateAccountActivity extends AppCompatActivity {
                         rdFemale.setChecked(true);
                     }
 
-                    if (account.isIsAdmin()) {
-                        rdTypeAdmin.setChecked(true);
-                    } else {
-                        rdTypeMember.setChecked(true);
+                    if (idAcc == sessionManager.getUserIdInSession() && account.isIsAdmin()){
+                        rdTypeAccount.setVisibility(View.GONE);
+                    }else{
+                        if (account.isIsAdmin()) {
+                            rdTypeAdmin.setChecked(true);
+                        } else {
+                            rdTypeMember.setChecked(true);
+                        }
                     }
-
                     mProgressDialog.dismiss();
                 } else {
                     mProgressDialog.dismiss();
@@ -296,7 +299,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
             paramObject.put("address", txtAddress.getEditText().getText().toString().trim());
             paramObject.put("sex", rdMale.isChecked());
 
-            if (idAcc == 1 || typeUpdate) {
+            if (idAcc == CommonData.ID_ADMIN_DEFAULT || typeUpdate || (idAcc == sessionManager.getUserIdInSession() && typeUser)) {
                 paramObject.put("isAdmin", typeUser);
             } else {
                 paramObject.put("isAdmin", rdTypeAdmin.isChecked());
