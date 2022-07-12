@@ -14,6 +14,7 @@ import com.example.projectsemiv.R;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.entity.ChangPasswordVm;
 import com.example.projectsemiv.helper.CommonData;
+import com.example.projectsemiv.helper.CommonHelper;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -145,7 +146,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 Account account = response.body();
-                if (account == null || !account.getPassword().equals(txtPasswordOld.getEditText().getText().toString())) {
+                if (account == null || !account.getPassword().equals(CommonHelper.toMd5(txtPasswordOld.getEditText().getText().toString()))) {
                     mProgressDialog.dismiss();
                     Toast.makeText(ChangePasswordActivity.this, getResources().getString(R.string.password_old_not_correct), Toast.LENGTH_SHORT).show();
                     return;
@@ -165,8 +166,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private void callApi() {
         ChangPasswordVm entity = new ChangPasswordVm();
         entity.setUserId(sessionManager.getUserIdInSession());
-        entity.setPassword(txtPasswordNew.getEditText().getText().toString());
-        entity.setConfirmPassword(txtConfirmPasswordNew.getEditText().getText().toString());
+        entity.setPassword(CommonHelper.toMd5(txtPasswordNew.getEditText().getText().toString().trim()));
+        entity.setConfirmPassword(CommonHelper.toMd5(txtConfirmPasswordNew.getEditText().getText().toString().trim()));
 
         ApiService.apiService.updatePasswordByUserId(entity).enqueue(new Callback<String>() {
             @Override

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.helper.CommonData;
+import com.example.projectsemiv.helper.CommonHelper;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -76,7 +77,7 @@ public class LoginActivity extends FragmentActivity {
                             mProgressDialog.dismiss();
                             return;
                         }
-                        if (!account.getPassword().equals(txtPassword.getEditText().getText().toString())) {
+                        if (!account.getPassword().equals(CommonHelper.toMd5(txtPassword.getEditText().getText().toString()))) {
                             Toast.makeText(LoginActivity.this, getResources().getString(R.string.password_not_correct), Toast.LENGTH_SHORT).show();
                             mProgressDialog.dismiss();
                             return;

@@ -1,11 +1,13 @@
 package com.example.projectsemiv.fragment;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -127,7 +129,11 @@ public class EnglishFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         HistoryVm historyVm = mListHistory.get(position);
-                        loadDataHistoryDetail(historyVm.getId(), historyVm.isStatus());
+                        if (historyVm.isStatus()) {
+                            loadDataHistoryDetail(historyVm.getId(), historyVm.isStatus());
+                        }else{
+                            dialogConfirm(historyVm.getId(), historyVm.isStatus());
+                        }
                     }
                 });
                 mProgressDialog.dismiss();
@@ -139,6 +145,25 @@ public class EnglishFragment extends Fragment {
                 Toast.makeText(getContext(), getResources().getString(R.string.server_error), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void dialogConfirm(int id, boolean status) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.notification);
+        builder.setMessage(R.string.notification_confirm_test);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                loadDataHistoryDetail(id, status);
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.show();
     }
 
     private void loadDataHistoryDetail(int id, boolean status) {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.helper.CommonData;
+import com.example.projectsemiv.helper.CommonHelper;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -132,8 +133,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void CallApi() {
         JSONObject paramObject = new JSONObject();
         try {
-            paramObject.put("userName", txtUserName.getEditText().getText().toString());
-            paramObject.put("password", txtPassword.getEditText().getText().toString());
+            paramObject.put("userName", txtUserName.getEditText().getText().toString().trim());
+            paramObject.put("password", CommonHelper.toMd5(txtPassword.getEditText().getText().toString().trim()));
             paramObject.put("name", txtName.getEditText().getText().toString());
             paramObject.put("email", txtEmail.getEditText().getText().toString());
             paramObject.put("image", null);

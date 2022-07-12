@@ -44,6 +44,7 @@
     <string name="notification_exit">Bạn có muốn thoát hay không?</string>
     <string name="notification_logout">Bạn có muốn đăng xuất hay không?</string>
     <string name="notification_confirm_delete">Bạn có muốn xóa hay không?</string>
+    <string name="notification_confirm_test">Bạn có muốn bắt đầu làm bài ngay bây giờ không?</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
 

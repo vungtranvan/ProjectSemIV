@@ -28,6 +28,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.helper.CommonData;
+import com.example.projectsemiv.helper.CommonHelper;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -170,9 +171,9 @@ public class UpdateAccountActivity extends AppCompatActivity {
                         rdFemale.setChecked(true);
                     }
 
-                    if (idAcc == sessionManager.getUserIdInSession() && account.isIsAdmin()){
+                    if (idAcc == sessionManager.getUserIdInSession() && account.isIsAdmin()) {
                         rdTypeAccount.setVisibility(View.GONE);
-                    }else{
+                    } else {
                         if (account.isIsAdmin()) {
                             rdTypeAdmin.setChecked(true);
                         } else {
@@ -285,7 +286,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
             if (txtPassword.getEditText().getText().toString().trim().length() == 0 || typeUpdate) {
                 paramObject.put("password", passwordUser);
             } else {
-                paramObject.put("password", txtPassword.getEditText().getText().toString().trim());
+                paramObject.put("password", CommonHelper.toMd5(txtPassword.getEditText().getText().toString().trim()));
             }
 
             paramObject.put("name", txtName.getEditText().getText().toString().trim());

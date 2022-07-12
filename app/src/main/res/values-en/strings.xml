@@ -39,6 +39,7 @@
     <string name="notification_exit">Do you want to exit or not?</string>
     <string name="notification_logout">Do you want to logout or not?</string>
     <string name="notification_confirm_delete">Do you want to delete or not?</string>
+    <string name="notification_confirm_test">Do you want to start test or not?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="question_no_default">No 1</string>
