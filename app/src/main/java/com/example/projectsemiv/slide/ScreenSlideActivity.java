@@ -37,9 +37,9 @@ import retrofit2.Response;
 
 public class ScreenSlideActivity extends FragmentActivity {
     /**
-     * The number of pages (wizard steps) to show in this demo.
+     * The number of pages (wizard steps) to show.
      */
-    private static final int NUM_PAGES = CommonData.PAGE_SIZE_TEST;
+    private int NUM_PAGES = 0;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -52,7 +52,7 @@ public class ScreenSlideActivity extends FragmentActivity {
      */
     private PagerAdapter pagerAdapter;
 
-    TextView tvKiemtra, tvTimer, tvXemDiem, tv_back_question, tv_current_question, tv_total_question, tv_next_question;
+    TextView tvKiemTra, tvTimer, tvXemDiem, tv_back_question, tv_current_question, tv_total_question, tv_next_question;
     public int checkAns = 0;
     List<QuestionHistoryVm> arr_Ques;
     CounterClass timer;
@@ -66,18 +66,22 @@ public class ScreenSlideActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
+        Intent intent = getIntent();
+        test = intent.getBooleanExtra("test", false);
+        _idH = intent.getIntExtra("_idH", 0);
+        arr_Ques = (ArrayList<QuestionHistoryVm>) intent.getExtras().getSerializable("arr_Ques");
+
+        NUM_PAGES = arr_Ques.size();
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        Intent intent = getIntent();
-        test = intent.getBooleanExtra("test", false);
-        _idH = intent.getIntExtra("_idH", 0);
 
         timer = new CounterClass(totalTimer * 60 * 1000, 1000);
-        tvKiemtra = (TextView) findViewById(R.id.tvKiemTra);
+        tvKiemTra = (TextView) findViewById(R.id.tvKiemTra);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tvXemDiem = (TextView) findViewById(R.id.tvScore);
 
@@ -86,18 +90,15 @@ public class ScreenSlideActivity extends FragmentActivity {
         tv_total_question = (TextView) findViewById(R.id.tv_total_question);
         tv_next_question = (TextView) findViewById(R.id.tv_next_question);
 
-        arr_Ques = (ArrayList<QuestionHistoryVm>) intent.getExtras().getSerializable("arr_Ques");
-
         if (!test) {
             // Fake Data
             //arr_Ques = new FakeData().getQuestionFake();
             timer.start();
         } else {
-            //arr_Ques = (ArrayList<Question01>) intent.getExtras().getSerializable("arr_Ques");
             timer.cancel();
             tvTimer.setText("00:00");
             checkAns = 1;
-            tvKiemtra.setVisibility(View.GONE);
+            tvKiemTra.setVisibility(View.GONE);
             tvXemDiem.setVisibility(View.VISIBLE);
         }
 
@@ -125,7 +126,7 @@ public class ScreenSlideActivity extends FragmentActivity {
             }
         });
 
-        tvKiemtra.setOnClickListener(new View.OnClickListener() {
+        tvKiemTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkAnswer();
@@ -248,7 +249,7 @@ public class ScreenSlideActivity extends FragmentActivity {
             tv_back_question.setVisibility(View.VISIBLE);
         }
         tvXemDiem.setVisibility(View.VISIBLE);
-        tvKiemtra.setVisibility(View.GONE);
+        tvKiemTra.setVisibility(View.GONE);
     }
 
     private void dialogFinish() {

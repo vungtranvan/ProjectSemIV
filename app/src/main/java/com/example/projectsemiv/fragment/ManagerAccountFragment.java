@@ -18,20 +18,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.projectsemiv.LoginActivity;
 import com.example.projectsemiv.MainActivity;
 import com.example.projectsemiv.R;
-import com.example.projectsemiv.RegisterActivity;
 import com.example.projectsemiv.activity.AddAccountActivity;
 import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.adapter.AccountAdapter;
 import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.services.ApiService;
 
@@ -157,7 +154,7 @@ public class ManagerAccountFragment extends Fragment {
             Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_logged_error), Toast.LENGTH_SHORT).show();
             return;
         }
-        if (id == 1) {
+        if (id == CommonData.ID_ADMIN_DEFAULT) {
             Toast.makeText(getContext(), getResources().getString(R.string.delete_acc_admin_error), Toast.LENGTH_SHORT).show();
             return;
         }

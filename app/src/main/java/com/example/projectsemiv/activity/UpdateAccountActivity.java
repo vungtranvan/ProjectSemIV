@@ -27,6 +27,7 @@ import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -85,9 +86,9 @@ public class UpdateAccountActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, 50) |
+                if (!validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_NAME) |
                         !validateHelper.isEmail(txtEmail) |
-                        !validateHelper.notEmpty(txtAddress, validateHelper.MIN_LENGTH_DEFAULT, 250)
+                        !validateHelper.notEmpty(txtAddress, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_ADDRESS)
                 ) {
                     return;
                 }
@@ -130,7 +131,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         rdTypeMember = findViewById(R.id.rdTypeMember);
         rdTypeAccount = findViewById(R.id.rdTypeAccount);
 
-        if (idAcc == 1 || typeUpdate) {
+        if (idAcc == CommonData.ID_ADMIN_DEFAULT || typeUpdate) {
             rdTypeAccount.setVisibility(View.GONE);
             if (typeUpdate) {
                 txtPassword.setVisibility(View.GONE);
@@ -231,7 +232,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String requestId, Map resultData) {
                 imagePath = resultData.get("secure_url").toString();
-                CallApi();
+                callApi();
             }
 
             @Override
@@ -260,7 +261,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                     if (imageUri != null) {
                         uploadImage();
                     } else {
-                        CallApi();
+                        callApi();
                     }
                 }
             }
@@ -273,7 +274,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         });
     }
 
-    private void CallApi() {
+    private void callApi() {
         JSONObject paramObject = new JSONObject();
         try {
             paramObject.put("_id", idAcc);
@@ -311,6 +312,13 @@ public class UpdateAccountActivity extends AppCompatActivity {
                 boolean bl = Boolean.parseBoolean(response.body());
                 if (bl) {
                     Toast.makeText(UpdateAccountActivity.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
+                    if (idAcc == sessionManager.getUserIdInSession()) {
+                        if (imagePath == null) {
+                            sessionManager.setNameDisplayAndImageUserInSession(txtName.getEditText().getText().toString().trim(), imgUser);
+                        } else {
+                            sessionManager.setNameDisplayAndImageUserInSession(txtName.getEditText().getText().toString().trim(), imagePath);
+                        }
+                    }
                     mProgressDialog.dismiss();
                     finish();
                 } else {
@@ -336,7 +344,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, 50);
+                validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_NAME);
             }
 
             @Override
@@ -366,7 +374,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAddress, validateHelper.MIN_LENGTH_DEFAULT, 250);
+                validateHelper.notEmpty(txtAddress, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_ADDRESS);
             }
 
             @Override
@@ -384,7 +392,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                 if (txtPassword.getEditText().getText().toString().trim().length() == 0) {
                     txtPassword.setError(null);
                 } else {
-                    validateHelper.isPassword(txtPassword, 4, 12);
+                    validateHelper.isPassword(txtPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD);
                 }
             }
 

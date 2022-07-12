@@ -45,7 +45,6 @@ public class ManagerQuestionFragment extends Fragment {
     private List<QuestionVm> mListQuestion;
     private ProgressDialog mProgressDialog;
     private TextView noData;
-    private SessionManager sessionManager;
 
     public ManagerQuestionFragment() {
 
@@ -64,7 +63,6 @@ public class ManagerQuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
-        sessionManager = new SessionManager(getContext());
         noData = getActivity().findViewById(R.id.noDataQuestion);
         getListQuestion(null);
     }

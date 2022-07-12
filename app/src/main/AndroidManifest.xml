@@ -18,6 +18,9 @@
         android:theme="@style/Theme.ProjectSemIV"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.UpdateQuestionActivity"
             android:exported="false" />
         <activity

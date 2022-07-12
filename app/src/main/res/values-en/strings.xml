@@ -14,6 +14,9 @@
     <string name="sign_up">SignUp</string>
     <string name="user_name">UserName</string>
     <string name="password">Password</string>
+    <string name="password_old">Password old</string>
+    <string name="password_new">Password new</string>
+    <string name="confirm_password_new">Confirm password new</string>
     <string name="donot_have_an_account">Don\'t have an Account?</string>
     <string name="have_an_account">You have an Account?</string>
     <string name="test">Test</string>
@@ -51,8 +54,10 @@
     <string name="email_not_valid">Please enter a valid email address</string>
     <string name="password_too_weak">Password too weak</string>
     <string name="confirm_password_is_correct">Confirm password is correct password</string>
+    <string name="confirm_password_new_is_correct">Confirm password new is correct password</string>
 
     <string name="password_not_correct">Password is not correct</string>
+    <string name="password_old_not_correct">Password old is not correct</string>
     <string name="username_not_exist">User does not exist</string>
     <string name="username_exist">User existed</string>
     <string name="email_exist">Email existed</string>
@@ -110,4 +115,5 @@
     <string name="math_nav">Math</string>
     <string name="english_nav">English</string>
     <string name="literature_nav">Literature</string>
+    <string name="password_new_must_be_other_password_old">Password new must be other password old</string>
 </resources>

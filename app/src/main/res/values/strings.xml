@@ -14,6 +14,9 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="user_name">Tài khoản</string>
     <string name="password">Mật khẩu</string>
+    <string name="password_old">Mật khẩu cũ</string>
+    <string name="password_new">Mật khẩu mới</string>
+    <string name="confirm_password_new">Nhập lại mật khẩu mới</string>
     <string name="donot_have_an_account">Bạn chưa có tài khoản?</string>
     <string name="have_an_account">Bạn đã có tài khoản?</string>
 
@@ -57,8 +60,10 @@
     <string name="email_not_valid">Vui lòng nhập một địa chỉ email hợp lệ</string>
     <string name="password_too_weak">Mật khẩu quá yếu</string>
     <string name="confirm_password_is_correct">Nhập lại mật khẩu không trùng khớp</string>
+    <string name="confirm_password_new_is_correct">Nhập lại mật khẩu mới không trùng khớp</string>
 
     <string name="password_not_correct">Mật khẩu không chính xác</string>
+    <string name="password_old_not_correct">Mật khẩu cũ không chính xác</string>
     <string name="username_not_exist">Tài khoản không tồn tại</string>
     <string name="username_exist">Tài khoản đã tồn tại</string>
     <string name="email_exist">Email đã tồn tại</string>
@@ -116,5 +121,6 @@
     <string name="math_nav">Toán</string>
     <string name="english_nav">Anh</string>
     <string name="literature_nav">Văn</string>
+    <string name="password_new_must_be_other_password_old">Mật khẩu mới phải khác mật khẩu cũ</string>
 
 </resources>

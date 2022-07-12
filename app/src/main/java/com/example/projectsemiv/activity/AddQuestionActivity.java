@@ -28,6 +28,7 @@ import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.example.projectsemiv.R;
 import com.example.projectsemiv.entity.CategoryExam;
+import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
 import com.google.android.material.textfield.TextInputLayout;
@@ -82,11 +83,11 @@ public class AddQuestionActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE) |
-                        !validateHelper.notEmpty(txtAnswerA, validateHelper.MIN_LENGTH_DEFAULT, 50) |
-                        !validateHelper.notEmpty(txtAnswerB, validateHelper.MIN_LENGTH_DEFAULT, 50) |
-                        !validateHelper.notEmpty(txtAnswerC, validateHelper.MIN_LENGTH_DEFAULT, 50) |
-                        !validateHelper.notEmpty(txtAnswerD, validateHelper.MIN_LENGTH_DEFAULT, 50)
+                if (!validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE) |
+                        !validateHelper.notEmpty(txtAnswerA, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE) |
+                        !validateHelper.notEmpty(txtAnswerB, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE) |
+                        !validateHelper.notEmpty(txtAnswerC, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE) |
+                        !validateHelper.notEmpty(txtAnswerD, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE)
                 ) {
                     return;
                 }
@@ -94,7 +95,7 @@ public class AddQuestionActivity extends AppCompatActivity {
                 if (imageUri != null) {
                     uploadImage();
                 } else {
-                    CallApi();
+                    callApi();
                 }
             }
         });
@@ -203,7 +204,7 @@ public class AddQuestionActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String requestId, Map resultData) {
                 imagePath = resultData.get("secure_url").toString();
-                CallApi();
+                callApi();
             }
 
             @Override
@@ -220,7 +221,7 @@ public class AddQuestionActivity extends AppCompatActivity {
         }).dispatch();
     }
 
-    private void CallApi() {
+    private void callApi() {
         JSONObject paramObject = new JSONObject();
         try {
             paramObject.put("name", txtName.getEditText().getText().toString());
@@ -265,7 +266,7 @@ public class AddQuestionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
+                validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
             }
 
             @Override
@@ -280,7 +281,7 @@ public class AddQuestionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAnswerA, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
+                validateHelper.notEmpty(txtAnswerA, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
             }
 
             @Override
@@ -294,7 +295,7 @@ public class AddQuestionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAnswerB, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
+                validateHelper.notEmpty(txtAnswerB, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
             }
 
             @Override
@@ -308,7 +309,7 @@ public class AddQuestionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAnswerC, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
+                validateHelper.notEmpty(txtAnswerC, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
             }
 
             @Override
@@ -322,7 +323,7 @@ public class AddQuestionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAnswerD, validateHelper.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
+                validateHelper.notEmpty(txtAnswerD, CommonData.MIN_LENGTH_DEFAULT, Integer.MAX_VALUE);
             }
 
             @Override

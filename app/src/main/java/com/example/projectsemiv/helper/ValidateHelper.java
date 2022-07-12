@@ -9,10 +9,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.regex.Pattern;
 
 public class ValidateHelper {
-
-    public final int MIN_LENGTH_DEFAULT = 1;
-    public final int MAX_LENGTH_DEFAULT = 25;
-
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -42,6 +38,21 @@ public class ValidateHelper {
             return false;
         } else if (nameInput.length() > maxLength) {
             input.setError(mContext.getResources().getString(R.string.field_max_length) + ": " + maxLength);
+            return false;
+        } else {
+            input.setError(null);
+            return true;
+        }
+    }
+
+    public boolean isEmail(TextInputLayout input) {
+        String emailInput = input.getEditText().getText().toString().trim();
+
+        if (emailInput.isEmpty()) {
+            input.setError(mContext.getResources().getString(R.string.field_can_not_empty));
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            input.setError(mContext.getResources().getString(R.string.email_not_valid));
             return false;
         } else {
             input.setError(null);
@@ -94,14 +105,23 @@ public class ValidateHelper {
         }
     }
 
-    public boolean isEmail(TextInputLayout input) {
-        String emailInput = input.getEditText().getText().toString().trim();
+    public boolean isConfirmPasswordNew(TextInputLayout input, int minLength, int maxLength, String value) {
+        String passwordInput = input.getEditText().getText().toString().trim();
 
-        if (emailInput.isEmpty()) {
+        if (passwordInput.isEmpty()) {
             input.setError(mContext.getResources().getString(R.string.field_can_not_empty));
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            input.setError(mContext.getResources().getString(R.string.email_not_valid));
+        } else if (passwordInput.length() < minLength) {
+            input.setError(mContext.getResources().getString(R.string.field_min_length) + ": " + minLength);
+            return false;
+        } else if (passwordInput.length() > maxLength) {
+            input.setError(mContext.getResources().getString(R.string.field_max_length) + ": " + maxLength);
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+            input.setError(mContext.getResources().getString(R.string.password_too_weak));
+            return false;
+        } else if (!passwordInput.equals(value)) {
+            input.setError(mContext.getResources().getString(R.string.confirm_password_new_is_correct));
             return false;
         } else {
             input.setError(null);

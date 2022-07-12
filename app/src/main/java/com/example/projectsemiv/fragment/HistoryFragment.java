@@ -42,7 +42,6 @@ public class HistoryFragment extends Fragment {
     private List<HistoryVm> mListHistory;
     private ProgressDialog mProgressDialog;
     private TextView noData;
-    private SessionManager sessionManager;
 
     public HistoryFragment() {
 
@@ -61,7 +60,6 @@ public class HistoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getResources().getString(R.string.please_wait));
-        sessionManager = new SessionManager(getContext());
         noData = getActivity().findViewById(R.id.noDataHistory);
         getListHistory(null);
     }

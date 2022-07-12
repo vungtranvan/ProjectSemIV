@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -60,12 +61,13 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateHelper.notEmpty(txtUserName, 2, validateHelper.MAX_LENGTH_DEFAULT) |
-                        !validateHelper.isPassword(txtPassword, 4, 12) |
-                        !validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, 50) |
+                if (!validateHelper.notEmpty(txtUserName, CommonData.MIN_LENGTH_USERNAME, CommonData.MAX_LENGTH_DEFAULT) |
+                        !validateHelper.isPassword(txtPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD) |
+                        !validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_NAME) |
                         !validateHelper.isEmail(txtEmail) |
-                        !validateHelper.notEmpty(txtAddress, validateHelper.MIN_LENGTH_DEFAULT, 250) |
-                        !validateHelper.isConfirmPassword(txtConfirmPassword, 4, 12, txtPassword.getEditText().getText().toString())
+                        !validateHelper.notEmpty(txtAddress, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_ADDRESS) |
+                        !validateHelper.isConfirmPassword(txtConfirmPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD,
+                                txtPassword.getEditText().getText().toString())
                 ) {
                     return;
                 }
@@ -185,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtUserName, 2, validateHelper.MAX_LENGTH_DEFAULT);
+                validateHelper.notEmpty(txtUserName, CommonData.MIN_LENGTH_USERNAME, CommonData.MAX_LENGTH_DEFAULT);
             }
 
             @Override
@@ -200,7 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtName, validateHelper.MIN_LENGTH_DEFAULT, 50);
+                validateHelper.notEmpty(txtName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_NAME);
             }
 
             @Override
@@ -230,7 +232,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtAddress, validateHelper.MIN_LENGTH_DEFAULT, 250);
+                validateHelper.notEmpty(txtAddress, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_ADDRESS);
             }
 
             @Override
@@ -245,7 +247,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.isPassword(txtPassword, 4, 12);
+                validateHelper.isPassword(txtPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD);
             }
 
             @Override
@@ -260,7 +262,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.isConfirmPassword(txtConfirmPassword, 4, 12, txtPassword.getEditText().getText().toString());
+                validateHelper.isConfirmPassword(txtConfirmPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD,
+                        txtPassword.getEditText().getText().toString());
             }
 
             @Override

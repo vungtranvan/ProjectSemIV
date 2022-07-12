@@ -16,8 +16,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.projectsemiv.activity.ChangePasswordActivity;
 import com.example.projectsemiv.activity.UpdateAccountActivity;
 import com.example.projectsemiv.fragment.EnglishFragment;
 import com.example.projectsemiv.fragment.HistoryFragment;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mdrawerLayout;
     private SessionManager sessionManager;
     private TextView txtUserNameLogged;
+    private CircleImageView imgUserLogged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +80,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().findItem(R.id.manager_question_nav).setVisible(false);
         }
         View headerView = navigationView.getHeaderView(0);
-        HashMap<String, String> userInfo = sessionManager.getUserInfoInSession();
+
         txtUserNameLogged = headerView.findViewById(R.id.txtUserNameLogged);
+        imgUserLogged = (CircleImageView) headerView.findViewById(R.id.imgUserLogged);
+        changeInfoAccLogged();
+    }
+
+    private void changeInfoAccLogged() {
+        HashMap<String, String> userInfo = sessionManager.getUserInfoInSession();
         txtUserNameLogged.setText(userInfo.get(SessionManager.KEY_NAME_DISPLAY_USER));
         String imgAccLogged = userInfo.get(SessionManager.KEY_USER_IMAGE);
         if (imgAccLogged != null) {
-            Glide.with(MainActivity.this).load(imgAccLogged).into((CircleImageView) headerView.findViewById(R.id.imgUserLogged));
+            Glide.with(MainActivity.this).load(imgAccLogged).into(imgUserLogged);
         }
     }
 
@@ -91,7 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         if (!sessionManager.checkLogin()) {
             redirectLoginActivity();
+            return;
         }
+        changeInfoAccLogged();
     }
 
     @Override
@@ -145,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("idAcc", sessionManager.getUserIdInSession());
                 intent.putExtra("typeUpdate", true);
                 startActivity(intent);
+                break;
+            case R.id.nav_change_pass:
+                Intent intent1 = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.nav_logout:
                 dialogLogout();

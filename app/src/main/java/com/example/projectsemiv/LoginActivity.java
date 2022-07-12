@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectsemiv.entity.Account;
+import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.SessionManager;
 import com.example.projectsemiv.helper.ValidateHelper;
 import com.example.projectsemiv.services.ApiService;
@@ -60,8 +61,8 @@ public class LoginActivity extends FragmentActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateHelper.notEmpty(txtUserName, validateHelper.MIN_LENGTH_DEFAULT, validateHelper.MAX_LENGTH_DEFAULT) |
-                        !validateHelper.isPassword(txtPassword, 4, 12)
+                if (!validateHelper.notEmpty(txtUserName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_DEFAULT) |
+                        !validateHelper.isPassword(txtPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD)
                 ) {
                     return;
                 }
@@ -115,7 +116,7 @@ public class LoginActivity extends FragmentActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.notEmpty(txtUserName, validateHelper.MIN_LENGTH_DEFAULT, validateHelper.MAX_LENGTH_DEFAULT);
+                validateHelper.notEmpty(txtUserName, CommonData.MIN_LENGTH_DEFAULT, CommonData.MAX_LENGTH_DEFAULT);
             }
 
             @Override
@@ -130,7 +131,7 @@ public class LoginActivity extends FragmentActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                validateHelper.isPassword(txtPassword, 4, 12);
+                validateHelper.isPassword(txtPassword, CommonData.MIN_LENGTH_PASSWORD, CommonData.MAX_LENGTH_PASSWORD);
             }
 
             @Override
