@@ -309,6 +309,14 @@ public class ScreenSlideActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        if (!test) {
+            submitDataExam();
+        }
+        super.onPause();
+    }
+
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
