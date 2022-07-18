@@ -125,5 +125,16 @@
     <string name="password_new_must_be_other_password_old">Mật khẩu mới phải khác mật khẩu cũ</string>
     <string name="search">Tìm kiếm</string>
     <string name="only_admin_account_can_be_updated">Chỉ có tài khoản admin mới được cập nhật</string>
+    <string name="forgot_pass">Quên mật khẩu?</string>
+    <string name="opt_code">Mã xác minh của bạn là:</string>
+    <string name="opt_send">Gửi mã ngay</string>
+    <string name="email_not_exit">Email không tồn tại</string>
+    <string name="We_will_send_otp">Chúng tôi sẽ gửi cho bạn mã otp đến địa chỉ email này để xác thực cho việc đổi mật khẩu</string>
+    <string name="otp_verification">Xác minh OTP</string>
+    <string name="otp_check">Vui lòng kiểm tra và nhập mã xác minh được gửi trong hộp thư email</string>
+    <string name="verification">Xác minh</string>
+    <string name="verification_fail">Mã xác minh không chính xác. Vui lòng kiểm tra lại</string>
+    <string name="verification_enter_max_fail">Bạn đã nhập mã sai quá</string>
+    <string name="times">lần.</string>
 
 </resources>

@@ -119,5 +119,15 @@
     <string name="password_new_must_be_other_password_old">Password new must be other password old</string>
     <string name="search">Search</string>
     <string name="only_admin_account_can_be_updated">Only admin accounts can be updated</string>
-
+    <string name="forgot_pass">Forgot password ?</string>
+    <string name="opt_code">Otp code is:</string>
+    <string name="opt_send">Send Otp Now</string>
+    <string name="email_not_exit">Email not exit</string>
+    <string name="We_will_send_otp">We will send you an otp code to this email address to verify the password change</string>
+    <string name="otp_verification">Otp Verification</string>
+    <string name="otp_check">Please check your email inbox and enter the verification code</string>
+    <string name="verification">Verification</string>
+    <string name="verification_fail">The verification code is incorrect. Please check again</string>
+    <string name="verification_enter_max_fail">You have entered the wrong code more than</string>
+    <string name="times">times.</string>
 </resources>

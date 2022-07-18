@@ -111,7 +111,7 @@ public class EnglishFragment extends Fragment {
 
     private void getListHistory() {
         mProgressDialog.show();
-        ApiService.apiService.getAllHistoryByMember(userId, CommonData.ID_ENGLISH).enqueue(new Callback<List<HistoryVm>>() {
+        ApiService.apiService.getAllHistoryByUserIdAndCategoryExamId(userId, CommonData.ID_ENGLISH).enqueue(new Callback<List<HistoryVm>>() {
             @Override
             public void onResponse(Call<List<HistoryVm>> call, Response<List<HistoryVm>> response) {
                 mListHistory = response.body();

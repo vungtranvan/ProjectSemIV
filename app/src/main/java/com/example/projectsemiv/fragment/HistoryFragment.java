@@ -98,7 +98,7 @@ public class HistoryFragment extends Fragment {
 
     private void getListHistory(String keyword) {
         mProgressDialog.show();
-        ApiService.apiService.getAllHistoryByAdmin(keyword).enqueue(new Callback<List<HistoryVm>>() {
+        ApiService.apiService.getAllHistory(keyword).enqueue(new Callback<List<HistoryVm>>() {
             @Override
             public void onResponse(Call<List<HistoryVm>> call, Response<List<HistoryVm>> response) {
                 mListHistory = response.body();

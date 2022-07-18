@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.projectsemiv.activity.SendEmailActivity;
 import com.example.projectsemiv.entity.Account;
 import com.example.projectsemiv.helper.CommonData;
 import com.example.projectsemiv.helper.CommonHelper;
@@ -105,6 +106,15 @@ public class LoginActivity extends FragmentActivity {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SendEmailActivity.class);
+                startActivity(intent);
             }
         });
     }

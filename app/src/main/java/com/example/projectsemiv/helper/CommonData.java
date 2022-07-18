@@ -21,4 +21,5 @@ public class CommonData {
 
     // Other
     public final static int TIME_TOTAL_TEST = 10;
+    public final static int NUMBER_MAX_ENTER_FAIL_OTP = 5;
 }

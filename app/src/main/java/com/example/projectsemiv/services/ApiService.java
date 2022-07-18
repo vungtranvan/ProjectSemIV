@@ -95,11 +95,11 @@ public interface ApiService {
     Call<String> deleteQuestionById(@Path("id") int id);
 
     // History
-    @GET("history/getAllByAdmin")
-    Call<List<HistoryVm>> getAllHistoryByAdmin(@Query("keySearch") String keySearch);
+    @GET("history/getAll")
+    Call<List<HistoryVm>> getAllHistory(@Query("keySearch") String keySearch);
 
-    @GET("history/getAllByMember/{userId}/{categoryExamId}")
-    Call<List<HistoryVm>> getAllHistoryByMember(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
+    @GET("history/getAllByUserIdAndCategoryExamId/{userId}/{categoryExamId}")
+    Call<List<HistoryVm>> getAllHistoryByUserIdAndCategoryExamId(@Path("userId") int userId, @Path("categoryExamId") int categoryExamId);
 
     @GET("history/getDetail/{id}")
     Call<List<QuestionHistoryVm>> getHistoryDetail(@Path("id") int id);
