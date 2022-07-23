@@ -110,7 +110,7 @@ public class HistoryFragment extends Fragment {
                     noData.setVisibility(View.GONE);
                 }
 
-                GridView gridViewH = getActivity().findViewById(R.id.listViewHistory);
+                ListView gridViewH = getActivity().findViewById(R.id.listViewHistory);
                 HistoryAdapter adapter = new HistoryAdapter(getContext(), mListHistory);
                 gridViewH.setAdapter(adapter);
                 gridViewH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
